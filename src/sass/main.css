@@ -7050,6 +7050,61 @@ h2 {
   box-shadow: 2px 2px 5px black, -2px -2px 5px black; /* Sombra más ligera al hacer clic */
 }
 
+.confirmationDeleteBtnHairdresserModalContainer {
+  background-color: rgb(143, 177, 221);
+  width: 35%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 0.5vh solid #04064e;
+  border-radius: 2vh;
+  padding: 1vh 2vh 3vh 2vh;
+  z-index: 2;
+  gap: 1vh;
+}
+.confirmationDeleteBtnHairdresserModalContainer__ask {
+  display: block;
+  font-size: 25px;
+  color: #04064e;
+  text-align: center;
+}
+.confirmationDeleteBtnHairdresserModalContainer__askMobile {
+  display: none;
+}
+.confirmationDeleteBtnHairdresserModalContainer__btnsContainer {
+  width: 100%;
+  height: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 1vh;
+}
+.confirmationDeleteBtnHairdresserModalContainer__btnsContainer__btns {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.confirmationDeleteBtnHairdresserModalContainer__btnsContainer__btns__prop {
+  width: 85%;
+  background-color: #04064e;
+  color: white;
+  border-color: black;
+  border-radius: 5vh;
+  box-shadow: 4px 4px 10px black, -4px -4px 10px black;
+  transition: transform 0.2s;
+}
+.confirmationDeleteBtnHairdresserModalContainer__btnsContainer__btns__prop:active {
+  transform: translateY(2px); /* Baja el botón al hacer clic */
+  box-shadow: 2px 2px 5px black, -2px -2px 5px black; /* Sombra más ligera al hacer clic */
+}
+
 .confirmationPayMembershipFeeModalContainer {
   background-color: rgb(143, 177, 221);
   width: 50%;
@@ -7768,6 +7823,104 @@ h2 {
     transform: translateY(2px); /* Baja el botón al hacer clic */
     box-shadow: 2px 2px 5px black, -2px -2px 5px black; /* Sombra más ligera al hacer clic */
   }
+  .updateServiceModal {
+    background-color: rgb(143, 177, 221);
+    width: 80%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 0.5vh solid #04064e;
+    border-radius: 2vh;
+    z-index: 1;
+  }
+  .updateServiceModal__btnCloseModal {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: end;
+  }
+  .updateServiceModal__btnCloseModal__prop {
+    color: #04064e;
+    font-size: 18px;
+    padding: 1vh 1vh 0vh 0vh;
+  }
+  .updateServiceModal__data {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2vh;
+    padding: 2vh 2vh 0vh 2vh;
+  }
+  .updateServiceModal__data__label-input {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1vh;
+  }
+  .updateServiceModal__data__label-input__label {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #04064e;
+  }
+  .updateServiceModal__data__label-input__label__prop {
+    text-align: center;
+    font-size: 20px;
+  }
+  .updateServiceModal__data__label-input__input {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .updateServiceModal__data__label-input__input__prop {
+    width: 100%;
+    height: auto;
+    padding: 0.3vh 0vh;
+    border-radius: 1vh;
+    border: 0.3vh solid #04064e;
+  }
+  .updateServiceModal__btn {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 0.5vh;
+    padding: 2vh 0vh;
+  }
+  .updateServiceModal__btn__prop {
+    width: 50%;
+    height: auto;
+    padding: 0.3vh 0vh;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: #04064e;
+    color: white;
+    border-color: black;
+    border-radius: 5vh;
+    box-shadow: 4px 4px 10px black, -4px -4px 10px black;
+    transition: transform 0.2s;
+  }
+  .updateServiceModal__btn__prop:active {
+    transform: translateY(2px); /* Baja el botón al hacer clic */
+    box-shadow: 2px 2px 5px black, -2px -2px 5px black; /* Sombra más ligera al hacer clic */
+  }
   .priceModalContainer {
     background-color: rgb(143, 177, 221);
     width: 90%;
@@ -7990,6 +8143,62 @@ h2 {
     transition: transform 0.2s;
   }
   .confirmationDeletePriceModalMobileContainer__btnsContainer__btns__prop:active {
+    transform: translateY(2px); /* Baja el botón al hacer clic */
+    box-shadow: 2px 2px 5px black, -2px -2px 5px black; /* Sombra más ligera al hacer clic */
+  }
+  .confirmationDeleteBtnHairdresserModalContainer {
+    background-color: rgb(143, 177, 221);
+    width: 90%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 0.5vh solid #04064e;
+    border-radius: 2vh;
+    padding: 1vh 2vh 1vh 2vh;
+    z-index: 2;
+    gap: 1vh;
+  }
+  .confirmationDeleteBtnHairdresserModalContainer__ask {
+    display: none;
+    font-size: 25px;
+    color: #04064e;
+  }
+  .confirmationDeleteBtnHairdresserModalContainer__askMobile {
+    display: block;
+    font-size: 15px;
+    color: #04064e;
+    text-align: center;
+  }
+  .confirmationDeleteBtnHairdresserModalContainer__btnsContainer {
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0vh;
+  }
+  .confirmationDeleteBtnHairdresserModalContainer__btnsContainer__btns {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .confirmationDeleteBtnHairdresserModalContainer__btnsContainer__btns__prop {
+    width: 65%;
+    background-color: #04064e;
+    color: white;
+    border-color: black;
+    border-radius: 5vh;
+    box-shadow: 4px 4px 10px black, -4px -4px 10px black;
+    transition: transform 0.2s;
+  }
+  .confirmationDeleteBtnHairdresserModalContainer__btnsContainer__btns__prop:active {
     transform: translateY(2px); /* Baja el botón al hacer clic */
     box-shadow: 2px 2px 5px black, -2px -2px 5px black; /* Sombra más ligera al hacer clic */
   }
@@ -12222,6 +12431,12 @@ h2 {
   font-size: 25px;
   color: #04064e;
 }
+.configContainer__config__createWeekDayMobile {
+  display: none;
+}
+.configContainer__config__createWeekDayMobile__inputsCreateWorkDayBtns {
+  display: none;
+}
 .configContainer__config__createWeekDay {
   width: 100%;
   height: auto;
@@ -12429,6 +12644,843 @@ h2 {
   box-shadow: 2px 2px 5px black, -2px -2px 5px black; /* Sombra más ligera al hacer clic */
 }
 
+@media (max-width: 480px) {
+  .configContainer {
+    background-color: rgb(143, 177, 221);
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 15vh 0vh;
+  }
+  .configContainer__config {
+    background-color: steelblue;
+    width: 90%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 2vh;
+    border: 0.5vh solid #04064e;
+    padding: 2vh 0vh;
+  }
+  .configContainer__config__title {
+    text-align: center;
+    font-size: 35px;
+    color: #04064e;
+    animation: fadeIn 2s ease-in;
+  }
+  .configContainer__config__hairdresser {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: start;
+    padding-left: 2vh;
+    border-top: 0.3vh solid #04064e;
+  }
+  .configContainer__config__hairdresser__prop {
+    font-size: 25px;
+    color: #04064e;
+  }
+  .configContainer__config__addHairdresser {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1vh 0vh;
+  }
+  .configContainer__config__addHairdresser__addHairdresserContainer {
+    width: 95%;
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 1vh 0vh;
+  }
+  .configContainer__config__addHairdresser__addHairdresserContainer__input {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .configContainer__config__addHairdresser__addHairdresserContainer__input__prop {
+    width: 100%;
+    height: 35px;
+    border-radius: 1vh;
+    border: 0.3vh solid #04064e;
+    color: #04064e;
+  }
+  .configContainer__config__addHairdresser__addHairdresserContainer__input__prop::-moz-placeholder {
+    padding-left: 0.5vh;
+  }
+  .configContainer__config__addHairdresser__addHairdresserContainer__input__prop::placeholder {
+    padding-left: 0.5vh;
+  }
+  .configContainer__config__addHairdresser__addHairdresserContainer__btn {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .configContainer__config__addHairdresser__addHairdresserContainer__btn__prop {
+    width: 80%;
+    height: 30px;
+    background-color: #04064e;
+    color: white;
+    border-color: black;
+    border-radius: 5vh;
+    box-shadow: 4px 4px 10px black, -4px -4px 10px black;
+    transition: transform 0.2s;
+  }
+  .configContainer__config__addHairdresser__addHairdresserContainer__btn__prop:active {
+    transform: translateY(2px); /* Baja el botón al hacer clic */
+    box-shadow: 2px 2px 5px black, -2px -2px 5px black; /* Sombra más ligera al hacer clic */
+  }
+  .configContainer__config__hairdressersList {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2vh;
+    padding-bottom: 2vh;
+  }
+  .configContainer__config__hairdressersList__titleList {
+    font-size: 20px;
+    color: #04064e;
+  }
+  .configContainer__config__hairdressersList__item {
+    width: 90%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .configContainer__config__hairdressersList__item__label {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .configContainer__config__hairdressersList__item__label__prop {
+    font-size: 15px;
+    color: #04064e;
+  }
+  .configContainer__config__hairdressersList__item__btn {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .configContainer__config__hairdressersList__item__btn__prop {
+    width: 50%;
+    background-color: #04064e;
+    color: white;
+    border-color: black;
+    border-radius: 5vh;
+    box-shadow: 4px 4px 10px black, -4px -4px 10px black;
+    transition: transform 0.2s;
+  }
+  .configContainer__config__hairdressersList__item__btn__prop:active {
+    transform: translateY(2px); /* Baja el botón al hacer clic */
+    box-shadow: 2px 2px 5px black, -2px -2px 5px black; /* Sombra más ligera al hacer clic */
+  }
+  .configContainer__config__services {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: start;
+    padding-left: 2vh;
+    border-top: 0.3vh solid #04064e;
+  }
+  .configContainer__config__services__prop {
+    font-size: 25px;
+    color: #04064e;
+  }
+  .configContainer__config__addService {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1vh 0vh;
+  }
+  .configContainer__config__addService__addServiceContainer {
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    padding: 1vh 0vh;
+    gap: 0.5vh;
+  }
+  .configContainer__config__addService__addServiceContainer__input {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .configContainer__config__addService__addServiceContainer__input__prop {
+    width: 100%;
+    height: 35px;
+    border-radius: 1vh;
+    border: 0.3vh solid #04064e;
+    color: #04064e;
+  }
+  .configContainer__config__addService__addServiceContainer__input__prop::-moz-placeholder {
+    padding-left: 0.5vh;
+    font-size: 15px;
+    text-align: center;
+  }
+  .configContainer__config__addService__addServiceContainer__input__prop::placeholder {
+    padding-left: 0.5vh;
+    font-size: 15px;
+    text-align: center;
+  }
+  .configContainer__config__addService__addServiceContainer__select {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .configContainer__config__addService__addServiceContainer__select__prop {
+    width: 100%;
+    height: 35px;
+    font-size: 15px;
+    background-color: #04064e;
+    color: white;
+    border-color: black;
+    border-radius: 5vh;
+    box-shadow: 4px 4px 10px black, -4px -4px 10px black;
+    transition: transform 0.2s;
+    text-align: center;
+    text-align: center;
+  }
+  .configContainer__config__addService__addServiceContainer__select__prop:active {
+    transform: translateY(2px); /* Baja el botón al hacer clic */
+    box-shadow: 2px 2px 5px black, -2px -2px 5px black; /* Sombra más ligera al hacer clic */
+  }
+  .configContainer__config__addService__addServiceContainer__btn {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .configContainer__config__addService__addServiceContainer__btn__prop {
+    width: 80%;
+    height: 30px;
+    font-size: 15px;
+    background-color: #04064e;
+    color: white;
+    border-color: black;
+    border-radius: 5vh;
+    box-shadow: 4px 4px 10px black, -4px -4px 10px black;
+    transition: transform 0.2s;
+  }
+  .configContainer__config__addService__addServiceContainer__btn__prop:active {
+    transform: translateY(2px); /* Baja el botón al hacer clic */
+    box-shadow: 2px 2px 5px black, -2px -2px 5px black; /* Sombra más ligera al hacer clic */
+  }
+  .configContainer__config__servicesList {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2vh;
+    padding-bottom: 2vh;
+  }
+  .configContainer__config__servicesList__titleList {
+    font-size: 20px;
+    color: #04064e;
+  }
+  .configContainer__config__servicesList__category {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .configContainer__config__servicesList__category__prop {
+    background-color: #04064e;
+    width: 85%;
+    text-align: center;
+    font-size: 20px;
+    color: white;
+    border-radius: 2vh;
+  }
+  .configContainer__config__servicesList__item {
+    width: 90%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .configContainer__config__servicesList__item__label {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .configContainer__config__servicesList__item__label__prop {
+    font-size: 12px;
+    color: #04064e;
+  }
+  .configContainer__config__servicesList__item__btn {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2vh;
+  }
+  .configContainer__config__servicesList__item__btn__prop {
+    width: 100%;
+    font-size: 10px;
+    background-color: #04064e;
+    color: white;
+    border-color: black;
+    border-radius: 5vh;
+    box-shadow: 4px 4px 10px black, -4px -4px 10px black;
+    transition: transform 0.2s;
+    padding: 0.5vh 1vh;
+  }
+  .configContainer__config__servicesList__item__btn__prop:active {
+    transform: translateY(2px); /* Baja el botón al hacer clic */
+    box-shadow: 2px 2px 5px black, -2px -2px 5px black; /* Sombra más ligera al hacer clic */
+  }
+  .configContainer__config__membershipFee {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: start;
+    padding-left: 2vh;
+    border-top: 0.3vh solid #04064e;
+  }
+  .configContainer__config__membershipFee__prop {
+    font-size: 25px;
+    color: #04064e;
+  }
+  .configContainer__config__membershipFeeList {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2vh;
+    padding-bottom: 2vh;
+  }
+  .configContainer__config__membershipFeeList__titleList {
+    font-size: 25px;
+    color: #04064e;
+  }
+  .configContainer__config__membershipFeeList__item {
+    width: 80%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 1vh;
+    gap: 1vh;
+  }
+  .configContainer__config__membershipFeeList__item__label {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2vh;
+  }
+  .configContainer__config__membershipFeeList__item__label__prop {
+    font-size: 12px;
+    color: #04064e;
+  }
+  .configContainer__config__membershipFeeList__item__label__input {
+    width: 100%;
+    height: 35px;
+    border-radius: 1vh;
+    border: 0.3vh solid #04064e;
+    text-align: center;
+  }
+  .configContainer__config__membershipFeeList__item__label__input::-moz-placeholder {
+    padding-left: 1vh;
+  }
+  .configContainer__config__membershipFeeList__item__label__input::placeholder {
+    padding-left: 1vh;
+  }
+  .configContainer__config__membershipFeeList__item__btn {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1vh;
+  }
+  .configContainer__config__membershipFeeList__item__btn__prop {
+    width: 80%;
+    background-color: #04064e;
+    color: white;
+    border-color: black;
+    border-radius: 5vh;
+    box-shadow: 4px 4px 10px black, -4px -4px 10px black;
+    transition: transform 0.2s;
+    font-size: 12px;
+    padding: 0.5vh 1vh;
+  }
+  .configContainer__config__membershipFeeList__item__btn__prop:active {
+    transform: translateY(2px); /* Baja el botón al hacer clic */
+    box-shadow: 2px 2px 5px black, -2px -2px 5px black; /* Sombra más ligera al hacer clic */
+  }
+  .configContainer__config__various {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: start;
+    padding-left: 2vh;
+    border-top: 0.3vh solid #04064e;
+  }
+  .configContainer__config__various__prop {
+    font-size: 25px;
+    color: #04064e;
+  }
+  .configContainer__config__addVarious {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1vh 0vh;
+  }
+  .configContainer__config__addVarious__addVariousContainer {
+    width: 90%;
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 1vh 0vh;
+    gap: 1vh;
+    /* &__select {
+        width: 100%;
+        height: auto;
+        @include disFC();
+        &__prop {
+            width: 90%;
+            height: 35px;
+            @include selects;
+            text-align: center;
+        }
+    } */
+  }
+  .configContainer__config__addVarious__addVariousContainer__input {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .configContainer__config__addVarious__addVariousContainer__input__prop {
+    width: 100%;
+    height: 35px;
+    border-radius: 1vh;
+    border: 0.3vh solid #04064e;
+    color: #04064e;
+  }
+  .configContainer__config__addVarious__addVariousContainer__input__prop::-moz-placeholder {
+    padding-left: 0.5vh;
+  }
+  .configContainer__config__addVarious__addVariousContainer__input__prop::placeholder {
+    padding-left: 0.5vh;
+  }
+  .configContainer__config__addVarious__addVariousContainer__btn {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .configContainer__config__addVarious__addVariousContainer__btn__prop {
+    width: 80%;
+    height: 30px;
+    background-color: #04064e;
+    color: white;
+    border-color: black;
+    border-radius: 5vh;
+    box-shadow: 4px 4px 10px black, -4px -4px 10px black;
+    transition: transform 0.2s;
+  }
+  .configContainer__config__addVarious__addVariousContainer__btn__prop:active {
+    transform: translateY(2px); /* Baja el botón al hacer clic */
+    box-shadow: 2px 2px 5px black, -2px -2px 5px black; /* Sombra más ligera al hacer clic */
+  }
+  .configContainer__config__variousList {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2vh;
+    padding-bottom: 2vh;
+  }
+  .configContainer__config__variousList__titleList {
+    font-size: 20px;
+    color: #04064e;
+  }
+  .configContainer__config__variousList__item {
+    width: 95%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .configContainer__config__variousList__item__label {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .configContainer__config__variousList__item__label__prop {
+    font-size: 10px;
+    color: #04064e;
+  }
+  .configContainer__config__variousList__item__btn {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1vh;
+  }
+  .configContainer__config__variousList__item__btn__prop {
+    width: 80%;
+    background-color: #04064e;
+    color: white;
+    border-color: black;
+    border-radius: 5vh;
+    box-shadow: 4px 4px 10px black, -4px -4px 10px black;
+    transition: transform 0.2s;
+    font-size: 12px;
+    padding: 0.5vh 1vh;
+  }
+  .configContainer__config__variousList__item__btn__prop:active {
+    transform: translateY(2px); /* Baja el botón al hacer clic */
+    box-shadow: 2px 2px 5px black, -2px -2px 5px black; /* Sombra más ligera al hacer clic */
+  }
+  .configContainer__config__weekDays {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: start;
+    padding-left: 2vh;
+    border-top: 0.3vh solid #04064e;
+  }
+  .configContainer__config__weekDays__prop {
+    font-size: 25px;
+    color: #04064e;
+  }
+  .configContainer__config__createWeekDayMobile {
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding-top: 1vh;
+  }
+  .configContainer__config__createWeekDayMobile__hairdresser {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .configContainer__config__createWeekDayMobile__hairdresser__select {
+    width: 80%;
+    height: 30px;
+    background-color: #04064e;
+    color: white;
+    border-color: black;
+    border-radius: 5vh;
+    box-shadow: 4px 4px 10px black, -4px -4px 10px black;
+    transition: transform 0.2s;
+    text-align: center;
+    font-size: 12px;
+  }
+  .configContainer__config__createWeekDayMobile__hairdresser__select:active {
+    transform: translateY(2px); /* Baja el botón al hacer clic */
+    box-shadow: 2px 2px 5px black, -2px -2px 5px black; /* Sombra más ligera al hacer clic */
+  }
+  .configContainer__config__createWeekDayMobile__day {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .configContainer__config__createWeekDayMobile__day__select {
+    width: 80%;
+    height: 30px;
+    background-color: #04064e;
+    color: white;
+    border-color: black;
+    border-radius: 5vh;
+    box-shadow: 4px 4px 10px black, -4px -4px 10px black;
+    transition: transform 0.2s;
+    text-align: center;
+    font-size: 12px;
+  }
+  .configContainer__config__createWeekDayMobile__day__select:active {
+    transform: translateY(2px); /* Baja el botón al hacer clic */
+    box-shadow: 2px 2px 5px black, -2px -2px 5px black; /* Sombra más ligera al hacer clic */
+  }
+  .configContainer__config__createWeekDayMobile__schedule {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* &__schedule {
+        width: 100%;
+        height: auto;
+        @include disFC();
+
+        &__inputSchedules {
+            width: 100%;
+            height: auto;
+            @include disFC();
+            gap: 1vh;
+            &__input {
+                width: 40%;
+                height: 35px;
+                border-radius: 1vh;
+                text-align: center;
+            }
+        }
+    } */
+  }
+  .configContainer__config__createWeekDayMobile__schedule__select {
+    width: 80%;
+    height: 30px;
+    background-color: #04064e;
+    color: white;
+    border-color: black;
+    border-radius: 5vh;
+    box-shadow: 4px 4px 10px black, -4px -4px 10px black;
+    transition: transform 0.2s;
+    text-align: center;
+    font-size: 12px;
+  }
+  .configContainer__config__createWeekDayMobile__schedule__select:active {
+    transform: translateY(2px); /* Baja el botón al hacer clic */
+    box-shadow: 2px 2px 5px black, -2px -2px 5px black; /* Sombra más ligera al hacer clic */
+  }
+  .configContainer__config__createWeekDayMobile__schedule__btn {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5vh;
+  }
+  .configContainer__config__createWeekDayMobile__schedule__btn__addSchedule {
+    width: 90%;
+    height: 30px;
+    background-color: #04064e;
+    color: white;
+    border-color: black;
+    border-radius: 5vh;
+    box-shadow: 4px 4px 10px black, -4px -4px 10px black;
+    transition: transform 0.2s;
+    font-size: 10px;
+  }
+  .configContainer__config__createWeekDayMobile__schedule__btn__addSchedule:active {
+    transform: translateY(2px); /* Baja el botón al hacer clic */
+    box-shadow: 2px 2px 5px black, -2px -2px 5px black; /* Sombra más ligera al hacer clic */
+  }
+  .configContainer__config__createWeekDayMobile__schedule__btn__goBack {
+    width: 60%;
+    height: 35px;
+    background-color: #04064e;
+    color: white;
+    border-color: black;
+    border-radius: 5vh;
+    box-shadow: 4px 4px 10px black, -4px -4px 10px black;
+    transition: transform 0.2s;
+  }
+  .configContainer__config__createWeekDayMobile__schedule__btn__goBack:active {
+    transform: translateY(2px); /* Baja el botón al hacer clic */
+    box-shadow: 2px 2px 5px black, -2px -2px 5px black; /* Sombra más ligera al hacer clic */
+  }
+  .configContainer__config__createWeekDayMobile__inputsCreateWorkDayBtns {
+    width: 95%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 1vh;
+  }
+  .configContainer__config__createWeekDayMobile__inputsCreateWorkDayBtns__inputs {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .configContainer__config__createWeekDayMobile__inputsCreateWorkDayBtns__inputs__prop {
+    width: 35%;
+    height: 35px;
+    border-radius: 1vh;
+    border: 0.3vh solid #04064e;
+    color: #04064e;
+  }
+  .configContainer__config__createWeekDayMobile__inputsCreateWorkDayBtns__btns {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1vh;
+  }
+  .configContainer__config__createWeekDayMobile__inputsCreateWorkDayBtns__btns__add {
+    width: 50%;
+    height: 30px;
+    background-color: #04064e;
+    color: white;
+    border-color: black;
+    border-radius: 5vh;
+    box-shadow: 4px 4px 10px black, -4px -4px 10px black;
+    transition: transform 0.2s;
+    font-size: 12px;
+  }
+  .configContainer__config__createWeekDayMobile__inputsCreateWorkDayBtns__btns__add:active {
+    transform: translateY(2px); /* Baja el botón al hacer clic */
+    box-shadow: 2px 2px 5px black, -2px -2px 5px black; /* Sombra más ligera al hacer clic */
+  }
+  .configContainer__config__createWeekDayMobile__inputsCreateWorkDayBtns__btns__create {
+    width: 50%;
+    height: 30px;
+    background-color: #04064e;
+    color: white;
+    border-color: black;
+    border-radius: 5vh;
+    box-shadow: 4px 4px 10px black, -4px -4px 10px black;
+    transition: transform 0.2s;
+    font-size: 12px;
+  }
+  .configContainer__config__createWeekDayMobile__inputsCreateWorkDayBtns__btns__create:active {
+    transform: translateY(2px); /* Baja el botón al hacer clic */
+    box-shadow: 2px 2px 5px black, -2px -2px 5px black; /* Sombra más ligera al hacer clic */
+  }
+  .configContainer__config__createWeekDayMobile__inputsCreateWorkDayBtns__btns__goBack {
+    width: 50%;
+    height: 30px;
+    background-color: #04064e;
+    color: white;
+    border-color: black;
+    border-radius: 5vh;
+    box-shadow: 4px 4px 10px black, -4px -4px 10px black;
+    transition: transform 0.2s;
+    font-size: 12px;
+  }
+  .configContainer__config__createWeekDayMobile__inputsCreateWorkDayBtns__btns__goBack:active {
+    transform: translateY(2px); /* Baja el botón al hacer clic */
+    box-shadow: 2px 2px 5px black, -2px -2px 5px black; /* Sombra más ligera al hacer clic */
+  }
+  .configContainer__config__createWeekDay {
+    display: none;
+  }
+  .configContainer__config__btnShowWorkDaysListContainer {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: end;
+    padding: 2vh 1vh;
+  }
+  .configContainer__config__btnShowWorkDaysListContainer__btn {
+    width: 40%;
+    height: 30px;
+    background-color: #04064e;
+    color: white;
+    border-color: black;
+    border-radius: 5vh;
+    box-shadow: 4px 4px 10px black, -4px -4px 10px black;
+    transition: transform 0.2s;
+    font-size: 12px;
+  }
+  .configContainer__config__btnShowWorkDaysListContainer__btn:active {
+    transform: translateY(2px); /* Baja el botón al hacer clic */
+    box-shadow: 2px 2px 5px black, -2px -2px 5px black; /* Sombra más ligera al hacer clic */
+  }
+  .configContainer__config__workDaysList {
+    width: 100%;
+    height: auto;
+  }
+  .configContainer__config__workDaysList__itemSchedule {
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border-top: 0.3vh solid white;
+    padding: 1vh 0vh;
+  }
+  .configContainer__config__workDaysList__itemSchedule__scheduleBtn {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-column: 3/4;
+    gap: 2vh;
+    padding-right: 1vh;
+  }
+  .configContainer__config__workDaysList__itemSchedule__scheduleBtn__label {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .configContainer__config__workDaysList__itemSchedule__scheduleBtn__label__prop {
+    width: 100%;
+    text-align: center;
+    font-size: 15px;
+    color: #04064e;
+  }
+  .configContainer__config__workDaysList__itemSchedule__scheduleBtn__btn {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .configContainer__config__workDaysList__itemSchedule__scheduleBtn__btn__prop {
+    width: 100%;
+    height: 35px;
+    background-color: #04064e;
+    color: white;
+    border-color: black;
+    border-radius: 5vh;
+    box-shadow: 4px 4px 10px black, -4px -4px 10px black;
+    transition: transform 0.2s;
+    padding: 0.5vh 2vh;
+    font-size: 12px;
+  }
+  .configContainer__config__workDaysList__itemSchedule__scheduleBtn__btn__prop:active {
+    transform: translateY(2px); /* Baja el botón al hacer clic */
+    box-shadow: 2px 2px 5px black, -2px -2px 5px black; /* Sombra más ligera al hacer clic */
+  }
+}
 @media (max-width: 480px) {
   .warningLogin {
     padding-top: 1vh;

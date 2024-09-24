@@ -5,7 +5,7 @@ import Shifts from './components/Shifts';
 import About from './components/About';
 import Cuts from './components/Cuts';
 import Partners from './components/Partners';
-import Prices from './components/Prices';
+//import Prices from './components/Prices';
 import UsersList from './components/UsersList';
 import ShiftsList from './components/ShiftsList';
 import PartnersList from './components/PartnersList';
@@ -71,7 +71,7 @@ function App() {
             <Route exact path="/about" element={<About/>}/>
             <Route exact path="/cuts" element={<Cuts/>}/>
             <Route exact path="/partners" element={<Partners/>}/>
-            <Route exact path="/prices" element={<Prices/>}/>
+            {/* <Route exact path="/prices" element={<Prices/>}/> */}
             <Route exact path="/partnersList" element={<PartnersList/>}/>
             <Route exact path="/providersList" element={<ProvidersList/>}/>
             <Route exact path="/productsList" element={<ProductsList/>}/>

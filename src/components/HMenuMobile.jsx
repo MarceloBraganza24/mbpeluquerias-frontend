@@ -133,9 +133,9 @@ const MenuOptions = ({isLoggedIn,role}) => {
             <Link to={"/usersList"} className='menuOptionsMobile__item'>
               - Lista de usuarios
             </Link>
-            <Link to={"/prices"} className='menuOptionsMobile__item'>
+            {/* <Link to={"/prices"} className='menuOptionsMobile__item'>
               - Lista de precios
-            </Link>
+            </Link> */}
             <Link to={"/myShifts"} className='menuOptionsMobile__item'>
                 - Mis turnos
             </Link>

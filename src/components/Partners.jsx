@@ -27,8 +27,8 @@ const Partners = () => {
     const mesActual = fechaActual.getMonth()+1;
     const currentYear = fechaActual.getFullYear();
     const currentDay = fechaActual.getDate();
-
     const [user, setUser] = useState('');
+    const [prices, setPrices] = useState([]);
 
     //console.log(user)
 
@@ -40,14 +40,28 @@ const Partners = () => {
 
     const [tickets, setTickets] = useState([]);
 
-    let ticketsByType = [];
-    if(tickets.length!=0) {
+    const palabrasABuscar = ["cuota", "socio"];
+    const membershipFees = prices.find(objeto => 
+        palabrasABuscar.every(palabra => 
+        objeto.title.toLowerCase().includes(palabra.toLowerCase())
+        )
+    );
+    
+    const membershipFeeTickets = tickets.filter(objeto => 
+        palabrasABuscar.every(palabra => 
+        objeto.type.toLowerCase().includes(palabra.toLowerCase())
+        )
+    );
+
+    //let ticketsByType = [];
+
+    /* if(tickets.length!=0) {
         ticketsByType = tickets.filter(ticket => ticket.type == 'cuota socio')
-    }
+    } */
 
     let ticketsByTypeByEmail;
     if(user){
-        ticketsByTypeByEmail = ticketsByType.filter(ticket => ticket.email == user.email)
+        ticketsByTypeByEmail = membershipFeeTickets.filter(ticket => ticket.email == user.email)
     }
 
     user&&ticketsByTypeByEmail.sort((a, b) => {
@@ -340,7 +354,15 @@ const Partners = () => {
     const {deleteTicketModal,menuOptionsModal,handleMenuOptionsModal} = useContext(OpenModalContext);
     const {handleBtnBuyVisible} = useContext(BtnMPContext);
     
-    const [membershipFee, setMembershipFee] = useState('');
+    //const [membershipFee, setMembershipFee] = useState('');
+
+    
+
+    
+
+    //console.log(membershipFeeTickets)
+   /*  if(membershipFee) {
+    } */
 
     const [isMonted, setIsMonted] = useState(false);
 
@@ -350,9 +372,7 @@ const Partners = () => {
             async function fetchPricesData() {
                 const response = await fetch(`${apiUrl}/api/prices`)
                 const pricesAll = await response.json();
-                const partnersPrices = pricesAll.data.filter(price => price.category == 'Socios')
-                const partnersMembershipFee = partnersPrices.find(price => price.price_of == 'cuota socio')
-                setMembershipFee(partnersMembershipFee.value_price_of)
+                setPrices(pricesAll.data)
             }
             fetchPricesData();
             async function fetchTicketsData() {
@@ -416,9 +436,7 @@ const Partners = () => {
         async function fetchPricesData() {
             const response = await fetch(`${apiUrl}/api/prices`)
             const pricesAll = await response.json();
-            const partnersPrices = pricesAll.data.filter(price => price.category == 'Socios')
-            const partnersMembershipFee = partnersPrices.find(price => price.price_of == 'cuota socio')
-            setMembershipFee(partnersMembershipFee.value_price_of)
+            setPrices(pricesAll.data)
         }
         fetchPricesData();
         async function fetchTicketsData() {
@@ -912,7 +930,7 @@ const Partners = () => {
                                     <h2 className='partnersContainerIsLoggedIn__credentials__label-input__label__prop'>Cuota:</h2>
                                 </div>
                                 <div className='partnersContainerIsLoggedIn__credentials__label-input__membershipFee'>
-                                    <div className='partnersContainerIsLoggedIn__credentials__label-input__membershipFee__prop'>$ {membershipFee}</div>
+                                    <div className='partnersContainerIsLoggedIn__credentials__label-input__membershipFee__prop'>$ {membershipFees.value}</div>
                                 </div>
                             </div>
                             <div className='partnersContainerIsLoggedIn__credentials__btn'>
@@ -923,64 +941,6 @@ const Partners = () => {
                     </div>
                     <LogOut/>
                 </>
-                : 
-                isLoggedIn && (user.role == 'user') && !user.isMembershipFeePaid?
-                <>
-                    <div className='partnersContainerIsLoggedIn'>
-                        <div className='partnersContainerIsLoggedIn__userName'>
-                            <h2 className='partnersContainerIsLoggedIn__userName__prop'>- Bienvenido/a, {user.first_name} -</h2>  
-                        </div>
-                        <h2 className='partnersContainerIsLoggedIn__phrase' style={{borderBottom:'0.3vh solid white'}}>Aún no eres socio/a en Que Corte!</h2>
-                        <h2 className='partnersContainerIsLoggedIn__phrase'>Registrate aquí mismo</h2>
-                        <div className='partnersContainerIsLoggedIn__credentials'>
-                            <div className='partnersContainerIsLoggedIn__credentials__label-input'>
-                                <div className='partnersContainerIsLoggedIn__credentials__label-input__label'>
-                                    <h2 className='partnersContainerIsLoggedIn__credentials__label-input__label__prop'>Nombre:</h2>
-                                </div>
-                                <div className='partnersContainerIsLoggedIn__credentials__label-input__input'>
-                                    <input disabled className='partnersContainerIsLoggedIn__credentials__label-input__input__prop' placeholder='Nombre' value={inputFirstNamePa} onChange={handleInputFirstNamePa}/>
-                                </div>
-                            </div>
-                            <div className='partnersContainerIsLoggedIn__credentials__label-input'>
-                                <div className='partnersContainerIsLoggedIn__credentials__label-input__label'>
-                                    <h2 className='partnersContainerIsLoggedIn__credentials__label-input__label__prop'>Apellido:</h2>
-                                </div>
-                                <div className='partnersContainerIsLoggedIn__credentials__label-input__input'>
-                                    <input disabled className='partnersContainerIsLoggedIn__credentials__label-input__input__prop' placeholder='Apellido' value={inputLastNamePa} onChange={handleInputLastNamePa}/>
-                                </div>
-                            </div>
-                            <div className='partnersContainerIsLoggedIn__credentials__label-input'>
-                                <div className='partnersContainerIsLoggedIn__credentials__label-input__label'>
-                                    <h2 className='partnersContainerIsLoggedIn__credentials__label-input__label__prop'>Teléfono:</h2>
-                                </div>
-                                <div className='partnersContainerIsLoggedIn__credentials__label-input__input'>
-                                    <input disabled className='partnersContainerIsLoggedIn__credentials__label-input__input__prop' type='text' maxLength={13} placeholder='Teléfono' value={inputPhonePa} onChange={handleInputPhonePa}/>
-                                </div>
-                            </div>
-                            <div className='partnersContainerIsLoggedIn__credentials__label-input'>
-                                <div className='partnersContainerIsLoggedIn__credentials__label-input__label'>
-                                    <h2 className='partnersContainerIsLoggedIn__credentials__label-input__label__prop'>Email:</h2>
-                                </div>
-                                <div className='partnersContainerIsLoggedIn__credentials__label-input__input'>
-                                    <input disabled className='partnersContainerIsLoggedIn__credentials__label-input__input__prop' type='email' placeholder='Email' value={inputEmailPa} onChange={handleInputEmailPa}/>
-                                </div>
-                            </div>
-                            <div className='partnersContainerIsLoggedIn__credentials__label-input'>
-                                <div className='partnersContainerIsLoggedIn__credentials__label-input__label'>
-                                    <h2 className='partnersContainerIsLoggedIn__credentials__label-input__label__prop'>Cuota:</h2>
-                                </div>
-                                <div className='partnersContainerIsLoggedIn__credentials__label-input__membershipFee'>
-                                    <div className='partnersContainerIsLoggedIn__credentials__label-input__membershipFee__prop'>$ {membershipFee}</div>
-                                </div>
-                            </div>
-                            <div className='partnersContainerIsLoggedIn__credentials__btn'>
-                                <button id='pagarCuotaSocioBtn' className='partnersContainerIsLoggedIn__credentials__btn__propNonRegister'>Aún no puedes registrarte</button>
-                                {preferenceId && <Wallet initialization={{ preferenceId: preferenceId }} />} 
-                            </div> 
-                        </div>
-                    </div>
-                    <LogOut/>
-                    </>
                 :
                 isLoggedIn && (user.role=='premium' || user.role=='user') && user.isMembershipFeePaid?
                 <>
@@ -1004,7 +964,7 @@ const Partners = () => {
                             <div className='partnersContainerIsLoggedIn__payMembershipFeeContainerMobile__labels-btn'>
 
                                 <div className='partnersContainerIsLoggedIn__payMembershipFeeContainerMobile__labels-btn__labels'>
-                                    <div className='partnersContainerIsLoggedIn__payMembershipFeeContainerMobile__labels-btn__labels__prop'>Cuota socio: $ {membershipFee}</div>
+                                    <div className='partnersContainerIsLoggedIn__payMembershipFeeContainerMobile__labels-btn__labels__prop'>Cuota socio: $ {membershipFees.value}</div>
                                 </div>
 
                                 <div className='partnersContainerIsLoggedIn__payMembershipFeeContainerMobile__labels-btn__btn'>
@@ -1038,7 +998,7 @@ const Partners = () => {
 
                             <div className='partnersContainerIsLoggedIn__payMembershipFeeContainer__labels-btn'>
                                 <div className='partnersContainerIsLoggedIn__payMembershipFeeContainer__labels-btn__labels'>
-                                    <div className='partnersContainerIsLoggedIn__payMembershipFeeContainer__labels-btn__labels__prop'>Cuota socio: $ {membershipFee}</div>
+                                    <div className='partnersContainerIsLoggedIn__payMembershipFeeContainer__labels-btn__labels__prop'>Cuota socio: $ {membershipFees.value}</div>
                                 </div>
 
                                 <div className='partnersContainerIsLoggedIn__payMembershipFeeContainer__labels-btn__btn'>
@@ -1205,7 +1165,7 @@ const Partners = () => {
                                     <h2 className='partnersContainer__credentials__label-input__label__prop'>Cuota:</h2>
                                 </div>
                                 <div className='partnersContainer__credentials__label-input__membershipFee'>
-                                    <div className='partnersContainer__credentials__label-input__membershipFee__prop'>$ {membershipFee}</div>
+                                    <div className='partnersContainer__credentials__label-input__membershipFee__prop'>$ </div>
                                 </div>
                             </div>
                             <div className='partnersContainer__credentials__btn'>

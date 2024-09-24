@@ -977,6 +977,47 @@
         }
     }
 }
+.confirmationDeleteBtnHairdresserModalContainer {
+    background-color: rgb(143, 177, 221);
+    width: 35%;
+    height: auto;
+    @include disFC();
+    flex-direction: column;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 0.5vh solid #04064e;
+    border-radius: 2vh;
+    padding: 1vh 2vh 3vh 2vh;
+    z-index: 2;
+    gap: 1vh;
+    &__ask {
+        display: block;
+        font-size: 25px;
+        color: #04064e;
+        text-align: center;
+    }
+    &__askMobile {
+        display: none;
+    }
+    &__btnsContainer {
+        width: 100%;
+        height: auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 1vh;
+        &__btns {
+            width: 100%;
+            height: auto;
+            @include disFC();
+            &__prop {
+                width: 85%;
+                @include btns;
+            }
+        }
+    }
+}
 .confirmationPayMembershipFeeModalContainer {
     background-color: rgb(143, 177, 221);
     width: 50%;
@@ -1554,6 +1595,83 @@
         }
     }
 }
+.updateServiceModal {
+    background-color: rgb(143, 177, 221);
+    width: 80%;
+    height: auto;
+    @include disFC();
+    flex-direction: column;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 0.5vh solid #04064e;
+    border-radius: 2vh;
+    z-index: 1;
+    &__btnCloseModal {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: end;
+        &__prop {
+            color: #04064e;
+            font-size: 18px;
+            padding: 1vh 1vh 0vh 0vh;
+        }
+    }
+    &__data {
+        width: 100%;
+        height: auto;
+        @include disFC();
+        flex-direction: column;
+        gap: 2vh;
+        padding: 2vh 2vh 0vh 2vh;
+        &__label-input {
+            width: 100%;
+            height: auto;
+            @include disFC();
+            gap: 1vh;
+            &__label {
+                width: 100%;
+                height: auto;
+                @include disFC();
+                color: #04064e;
+                &__prop {
+                    text-align: center;
+                    font-size: 20px;
+                }
+            }
+            &__input {
+                width: 100%;
+                height: auto;
+                @include disFC();
+                &__prop {
+                    width: 100%;
+                    height: auto;
+                    padding: 0.3vh 0vh;
+                    border-radius: 1vh;
+                    border: 0.3vh solid #04064e;
+                }
+            }
+        }
+    }
+    &__btn {
+        width: 100%;
+        height: auto;
+        @include disFC();
+        flex-direction: column;
+        gap: 0.5vh;
+        padding: 2vh 0vh;
+        &__prop {
+            width: 50%;
+            height: auto;
+            padding: 0.3vh 0vh;
+            font-size: 15px;
+            font-weight: bold;
+            @include btns;            
+        }
+    }
+}
 .priceModalContainer {
     background-color: rgb(143, 177, 221);
     width: 90%;
@@ -1727,6 +1845,50 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 1vh;
+        &__btns {
+            width: 100%;
+            height: auto;
+            @include disFC();
+            &__prop {
+                width: 65%;
+                @include btns;
+            }
+        }
+    }
+}
+.confirmationDeleteBtnHairdresserModalContainer {
+    background-color: rgb(143, 177, 221);
+    width: 90%;
+    height: auto;
+    @include disFC();
+    flex-direction: column;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 0.5vh solid #04064e;
+    border-radius: 2vh;
+    padding: 1vh 2vh 1vh 2vh;
+    z-index: 2;
+    gap: 1vh;
+    &__ask {
+        display: none;
+        font-size: 25px;
+        color: #04064e;
+    }
+    &__askMobile {
+        display: block;
+        font-size: 15px;
+        color: #04064e;
+        text-align: center;
+
+    }
+    &__btnsContainer {
+        width: 100%;
+        height: auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0vh;
         &__btns {
             width: 100%;
             height: auto;

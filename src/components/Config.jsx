@@ -7,9 +7,11 @@ import LogOut from './LogOut';
 import {IsLoggedContext} from '../context/IsLoggedContext';
 import {OpenModalContext} from '../context/OpenModalContext'; 
 import { toast } from 'react-toastify'
+import Spinner from './Spinner'
 
 const Config = () => {
   const {isLoggedIn, login, logout} = useContext(IsLoggedContext);
+  const [showSpinner, setShowSpinner] = useState(false);
   const [user, setUser] = useState('');
   const [hairdressers, setHairdressers] = useState([]);
   const [services, setServices] = useState([]);
@@ -386,24 +388,14 @@ const Config = () => {
       
     }  
 
-    const handleBtnDeleteHairdresser = async(id) => {
-      
-      const response = await fetch(`${apiUrl}/api/hairdressers/${id}`, {
-          method: 'DELETE'
-      })
-      if (response.ok) {
-          toast('Has eliminado el peluquero correctamente', {
-              position: "top-right",
-              autoClose: 2000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "dark",
-          });
-      } 
+    const [idHairdresser, setIdHairdresser] = useState('');
+    const [nameHairdresser, setNameHairdresser] = useState('');
+    const [deleteHairdresserModal, setDeleteHairdresserModal] = useState(false);
 
+    const handleOpenModalBtnDeleteHairdresser = (id,hairdresser) => {
+        setIdHairdresser(id)
+        setNameHairdresser(hairdresser)
+        setDeleteHairdresserModal(true)
     }
 
     const hanldeBtnAddService = async() => {
@@ -794,6 +786,62 @@ const Config = () => {
     }
 
     
+    const DeleteHairdresserModal = ({id,hairdresser,setDeleteHairdresserModal}) => {
+
+        const handleBtnDeleteHairdresser = async() => {
+            setShowSpinner(true)
+            const response = await fetch(`${apiUrl}/api/hairdressers/${id}`, {
+                method: 'DELETE'
+            })
+            if (response.ok) {
+                toast('Has eliminado el peluquero correctamente', {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+                setTimeout(() => {
+                    setShowSpinner(false)
+                    setDeleteHairdresserModal(false)
+                }, 2500);
+            } 
+        }
+
+        const handleBtnNonDeleteHairdresser = () => {
+            setDeleteHairdresserModal(false)
+        }
+
+      return (
+        <>
+            <div className='confirmationDeleteBtnHairdresserModalContainer'>
+                <div className='confirmationDeleteBtnHairdresserModalContainer__ask'>¿Estás seguro que deseas borrar el peluquero {hairdresser}?</div>
+                <div className='confirmationDeleteBtnHairdresserModalContainer__askMobile'>
+                    <div className='confirmationDeleteBtnHairdresserModalContainer__askMobile__ask'>¿Estás seguro que deseas borrar el peluquero {hairdresser}?</div>
+                </div>
+                <div className='confirmationDeleteBtnHairdresserModalContainer__btnsContainer'>
+                    <div className='confirmationDeleteBtnHairdresserModalContainer__btnsContainer__btns'>
+                        {
+                            !showSpinner?                            
+                            <button onClick={handleBtnDeleteHairdresser} className='confirmationDeleteBtnHairdresserModalContainer__btnsContainer__btns__prop'>Si</button>
+                            :
+                            <Spinner/>
+                        }
+                    </div>
+                    <div className='confirmationDeleteBtnHairdresserModalContainer__btnsContainer__btns'>
+                        <button onClick={handleBtnNonDeleteHairdresser} className='confirmationDeleteBtnHairdresserModalContainer__btnsContainer__btns__prop'>No</button>
+                    </div>
+                </div>
+            </div>
+        </>
+      )
+    }
+    
+
+    
     const UpdateServiceModal = ({setUpdateServiceBtnIsOpen,id,title,value}) => {
 
       const [inputTitleUpdateService,setInputTitleUpdateService] = useState('')
@@ -1030,7 +1078,8 @@ const Config = () => {
                                                 <div className='configContainer__config__hairdressersList__item__label__prop'>{hairdresser.name}</div>
                                             </div>
                                             <div className='configContainer__config__hairdressersList__item__btn'>
-                                                <button onClick={()=>{handleBtnDeleteHairdresser(hairdresser._id)}} className='configContainer__config__hairdressersList__item__btn__prop'>Borrar</button>
+                                                {/* <button onClick={()=>{handleBtnDeleteHairdresser(hairdresser._id)}} className='configContainer__config__hairdressersList__item__btn__prop'>Borrar</button> */}
+                                                <button onClick={()=>{handleOpenModalBtnDeleteHairdresser(hairdresser._id,hairdresser.name)}} className='configContainer__config__hairdressersList__item__btn__prop'>Borrar</button>
                                             </div>
                                         </div>
                                     </>
@@ -1204,6 +1253,69 @@ const Config = () => {
                     <div className='configContainer__config__weekDays'>
                         <div className='configContainer__config__weekDays__prop'>Días laborales:</div>
                     </div>
+
+
+
+
+
+                    <div className='configContainer__config__createWeekDayMobile'>
+
+                        <div className='configContainer__config__createWeekDayMobile__hairdresser'>
+                            <select className='configContainer__config__createWeekDayMobile__hairdresser__select'  value={selectHairdressersWeekDays} onChange={(e) => {handleSelectHairdressersWeekDays(e.target.value)}}>
+                                {hairdressersOptionsSelect.map((option, index) => (
+                                <option key={index} value={option}>{option}</option>
+                                ))}
+                            </select>
+                        </div>
+
+                        <div className='configContainer__config__createWeekDayMobile__day'>
+                            <select className='configContainer__config__createWeekDayMobile__day__select'  value={selectDaysWeekDays} onChange={(e) => {handleSelectDaysWeekDays(e.target.value)}}>
+                                {weekDays.map((option, index) => (
+                                <option key={index} value={option}>{option}</option>
+                                ))}
+                            </select>
+                        </div>
+
+                        <div className='configContainer__config__createWeekDayMobile__schedule'>
+
+                            <select className='configContainer__config__createWeekDayMobile__schedule__select' value={selectScheduleWeekDays} onChange={(e) => {handleSelectScheduleWeekDays(e.target.value)}}>
+                                {schedulesWeekDays.map((option, index) => (
+                                <option key={index} value={option}>{option}</option>
+                                ))}
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                    <div className='configContainer__config__createWeekDayMobile__inputsCreateWorkDayBtns'>
+                            {
+                                inputCreateWeekDayOpen&&
+                                <div className='configContainer__config__createWeekDayMobile__inputsCreateWorkDayBtns__inputs'>
+                                    <input maxLength={2} value={inputCreateWeekDayH} onChange={handleInputCreateWeekDayH} onBlur={handleOnBlurInputCreateWeekDayH} className='configContainer__config__createWeekDayMobile__inputsCreateWorkDayBtns__inputs__prop' type="text" />
+                                    <div>:</div>
+                                    <input maxLength={2} value={inputCreateWeekDayM} onChange={handleInputCreateWeekDayM} onBlur={handleOnBlurInputCreateWeekDayM} className='configContainer__config__createWeekDayMobile__inputsCreateWorkDayBtns__inputs__prop' type="text" />
+                                </div>
+                            }
+                        <div className='configContainer__config__createWeekDayMobile__inputsCreateWorkDayBtns__btns'>
+                            
+                            {
+                                !inputCreateWeekDayOpen?
+                                <button onClick={()=>setInputCreateWeekDayOpen(true)} className='configContainer__config__createWeekDayMobile__inputsCreateWorkDayBtns__btns__add'>Añadir horario</button>
+                                :
+                                <>
+                                <button onClick={handleBtnCreateWeekDay} className='configContainer__config__createWeekDayMobile__inputsCreateWorkDayBtns__btns__create'>Crear</button>
+                                <button onClick={()=>setInputCreateWeekDayOpen(false)} className='configContainer__config__createWeekDayMobile__inputsCreateWorkDayBtns__btns__goBack'>Atrás</button>
+                                </>
+                            }
+
+                        </div>
+                    </div>
+
+
+
+
+
                     <div className='configContainer__config__createWeekDay'>
 
                       <div className='configContainer__config__createWeekDay__hairdresser'>
@@ -1260,6 +1372,18 @@ const Config = () => {
                       </div>
 
                     </div>
+
+
+
+
+
+
+
+
+
+
+
+
                     <div className='configContainer__config__btnShowWorkDaysListContainer'>
                         {
                             !showWorkDaysList ?
@@ -1291,6 +1415,9 @@ const Config = () => {
                             }
                             </div>
                     }
+                        {
+                          deleteHairdresserModal&&<DeleteHairdresserModal setDeleteHairdresserModal={setDeleteHairdresserModal} id={idHairdresser} hairdresser={nameHairdresser} />
+                        }
                         {
                           updateServiceBtnIsOpen&&<UpdateServiceModal setUpdateServiceBtnIsOpen={setUpdateServiceBtnIsOpen} id={idService} title={titleService} value={valueService} />
                         }

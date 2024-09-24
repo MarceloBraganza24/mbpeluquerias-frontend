@@ -679,7 +679,7 @@ const MyShiftListModal = ({id,hairdresser,first_name,last_name,service,email,dat
                             <input className='myShiftModalContainer__itemShift__input__prop' value={!inputLastNameISh?last_name:inputLastNameISh}onChange={handleInputLastNameISh}/>
                         </div>
                         <div className='myShiftModalContainer__itemShift__input'>
-                            <input className='myShiftModalContainer__itemShift__input__prop' type='email' value={!inputEmailISh?email:inputEmailISh}onChange={handleInputEmailISh}/>
+                            <input disabled style={{backgroundColor:'white',color:'black'}} className='myShiftModalContainer__itemShift__input__prop' type='email' value={!inputEmailISh?email:inputEmailISh}onChange={handleInputEmailISh}/>
                         </div>
                         <div className='myShiftModalContainer__itemShift__selectService'>
                             <select className='myShiftModalContainer__itemShift__selectService__select' value={selectHairdresserISh} onChange={(e) => {handleSelectHairdresserISh(e.target.value)}}>
@@ -717,6 +717,15 @@ const MyShiftListModal = ({id,hairdresser,first_name,last_name,service,email,dat
                     </>
                     :
                     <>
+                        <div className='myShiftModalContainer__itemShift__input'>
+                            <input disabled className='myShiftModalContainer__itemShift__input__prop' value={!inputFirstNameISh?first_name:inputFirstNameISh}onChange={handleInputFirstNameISh}/>
+                        </div>
+                        <div className='myShiftModalContainer__itemShift__input'>
+                            <input disabled className='myShiftModalContainer__itemShift__input__prop' value={!inputLastNameISh?last_name:inputLastNameISh}onChange={handleInputLastNameISh}/>
+                        </div>
+                        <div className='myShiftModalContainer__itemShift__input'>
+                            <input disabled className='myShiftModalContainer__itemShift__input__prop' value={!inputEmailISh?email:inputEmailISh}onChange={handleInputEmailISh}/>
+                        </div>
                         <div className='myShiftModalContainer__itemShift__selectService'>
                             <select disabled className='myShiftModalContainer__itemShift__selectService__select' value={selectHairdresserISh} onChange={(e) => {handleSelectHairdresserISh(e.target.value)}}>
                                 {optionsHairdresser.map((option, index) => (
@@ -724,21 +733,12 @@ const MyShiftListModal = ({id,hairdresser,first_name,last_name,service,email,dat
                                 ))}
                             </select>
                         </div>
-                        <div className='myShiftModalContainer__itemShift__input'>
-                            <input disabled className='myShiftModalContainer__itemShift__input__prop' value={!inputFirstNameISh?first_name:inputFirstNameISh}onChange={handleInputFirstNameISh}/>
-                        </div>
-                        <div className='myShiftModalContainer__itemShift__input'>
-                            <input disabled className='myShiftModalContainer__itemShift__input__prop' value={!inputLastNameISh?last_name:inputLastNameISh}onChange={handleInputLastNameISh}/>
-                        </div>
                         <div className='myShiftModalContainer__itemShift__selectService'>
                             <select disabled className='myShiftModalContainer__itemShift__selectService__select' value={inputServiceISh} onChange={(e) => {handleSelectServiceISh(e.target.value)}}>
                                 {optionsService.map((option, index) => (
                                 <option key={index} value={option}>{option}</option>
                                 ))}
                             </select>
-                        </div>
-                        <div className='myShiftModalContainer__itemShift__input'>
-                            <input disabled className='myShiftModalContainer__itemShift__input__prop' value={!inputEmailISh?email:inputEmailISh}onChange={handleInputEmailISh}/>
                         </div>
                         <div className='myShiftModalContainer__itemShift__input'>
                             <DatePicker className='datePikerShiftsList'

@@ -111,9 +111,13 @@ const Shifts = () => {
 
     let filteredArray = schedulesByHairdresserDate.filter(time => !schedulesHairdressersFilteredByNotCancel.includes(time));
 
-    filteredArray.forEach(res => {
-        optionsScheduleSh.push(res)
-    })
+    if(filteredArray.length == 0) {
+        optionsScheduleSh.push('No hay horarios')
+    } else {
+        filteredArray.forEach(res => {
+            optionsScheduleSh.push(res)
+        })
+    }
     
     const optionsHairdresser = ['Peluquero'];
     hairdressers.forEach(res => {

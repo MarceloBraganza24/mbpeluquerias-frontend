@@ -571,7 +571,7 @@ const MyShiftListModalMobile = ({id,hairdresser,first_name,last_name,service,ema
                     <div style={{paddingTop:'2vh'}} className='myShiftModalContainerMobile__labelInput'>
                         <div className='myShiftModalContainerMobile__labelInput__label'>Email</div>
                         <div className='myShiftModalContainerMobile__labelInput__input'>
-                            <input className='myShiftModalContainerMobile__labelInput__input__prop' type='email' value={!inputEmailISh?email:inputEmailISh}onChange={handleInputEmailISh}/>
+                            <input disabled style={{backgroundColor:'white',color:'black'}} className='myShiftModalContainerMobile__labelInput__input__prop' type='email' value={!inputEmailISh?email:inputEmailISh}onChange={handleInputEmailISh}/>
                         </div>
                     </div>
                     <div style={{paddingTop:'1vh'}} className='myShiftModalContainerMobile__labelInput'>
