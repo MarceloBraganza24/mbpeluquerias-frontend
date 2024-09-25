@@ -149,7 +149,7 @@ const Config = () => {
             } else {
             logout()
             }
-        }, 60000);
+        }, 10000);
 
         return () => clearInterval(interval); 
         
@@ -371,6 +371,9 @@ const Config = () => {
                 progress: undefined,
                 theme: "dark",
             });
+            setTimeout(() => {
+                setInputAddHairdresser('');
+            }, 2500);
         } 
         if(data.error === 'There is already a hairdresser with that name') {
             toast('Ya existe un peluquero con ese nombre!', {
@@ -391,11 +394,18 @@ const Config = () => {
     const [idHairdresser, setIdHairdresser] = useState('');
     const [nameHairdresser, setNameHairdresser] = useState('');
     const [deleteHairdresserModal, setDeleteHairdresserModal] = useState(false);
+    const [deleteServiceModal, setDeleteServiceModal] = useState(false);
 
     const handleOpenModalBtnDeleteHairdresser = (id,hairdresser) => {
         setIdHairdresser(id)
         setNameHairdresser(hairdresser)
         setDeleteHairdresserModal(true)
+    }
+
+    const handleOpenModalBtnDeleteService = (id,service) => {
+        setIdService(id)
+        setTitleService(service)
+        setDeleteServiceModal(true)
     }
 
     const hanldeBtnAddService = async() => {
@@ -445,11 +455,25 @@ const Config = () => {
                 progress: undefined,
                 theme: "dark",
             });
-        } 
-        if(data.error === 'There is already a service with that title') {
+            setTimeout(() => {
+                setInputTitleService('');
+                setInputValueService('');
+            }, 2500);
+        } else if(data.error === 'There is already a service with that title') {
             toast('Ya existe un servicio con ese nombre y categoría!', {
                 position: "top-right",
                 autoClose: 1500,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
+        } else {
+            toast('Ha ocurrido un error, intente nuevamente!', {
+                position: "top-right",
+                autoClose: 2000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
@@ -599,30 +623,49 @@ const Config = () => {
           theme: "dark",
         });
         } else {
-          const obj = {
-            title: inputAddTitleVariouPrice,
-            value: inputAddValueVariouPrice,
-            price_datetime: price_datetime
-          }
-          const response = await fetch(`${apiUrl}/api/prices/register`, {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json; charset=utf-8'
-              },
-              body: JSON.stringify(obj)
-          })
-          if (response.ok) {
-            toast(`Has añadido el precio de ${inputAddTitleVariouPrice} correctamente`, {
-                position: "top-right",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-            });
-          } 
+            const obj = {
+                title: inputAddTitleVariouPrice,
+                value: inputAddValueVariouPrice,
+                price_datetime: price_datetime
+            }
+            const response = await fetch(`${apiUrl}/api/prices/register`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json; charset=utf-8'
+                },
+                body: JSON.stringify(obj)
+            })
+            const data = await response.json();
+            if (response.ok) {
+                toast(`Has añadido el precio de ${inputAddTitleVariouPrice} correctamente`, {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+                setTimeout(() => {
+                    setInputAddTitleVariouPrice('');
+                    setInputAddValueVariouPrice('');
+                }, 2500);
+            } else if(data.error === 'There is already a price with that title') {
+                toast('Ya existe un documento guardado con ese título!', {
+                    position: "top-right",
+                    autoClose: 1500,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+            }
+
+
+          
         }
     }
 
@@ -833,6 +876,60 @@ const Config = () => {
                     </div>
                     <div className='confirmationDeleteBtnHairdresserModalContainer__btnsContainer__btns'>
                         <button onClick={handleBtnNonDeleteHairdresser} className='confirmationDeleteBtnHairdresserModalContainer__btnsContainer__btns__prop'>No</button>
+                    </div>
+                </div>
+            </div>
+        </>
+      )
+    }
+
+    const DeleteServiceModal = ({id,service,setDeleteServiceModal}) => {
+
+        const handleBtnDeleteService = async() => {
+            setShowSpinner(true)
+            const response = await fetch(`${apiUrl}/api/services/${id}`, {
+                method: 'DELETE'
+            })
+            if (response.ok) {
+                toast('Has eliminado el servicio correctamente', {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+                setTimeout(() => {
+                    setShowSpinner(false)
+                    setDeleteServiceModal(false)
+                }, 2500);
+            } 
+        }
+
+        const handleBtnNonDeleteService = () => {
+            setDeleteServiceModal(false)
+        }
+
+      return (
+        <>
+            <div className='confirmationDeleteBtnHairdresserModalContainer'>
+                <div className='confirmationDeleteBtnHairdresserModalContainer__ask'>¿Estás seguro que deseas borrar el servicio "{service}"?</div>
+                <div className='confirmationDeleteBtnHairdresserModalContainer__askMobile'>
+                    <div className='confirmationDeleteBtnHairdresserModalContainer__askMobile__ask'>¿Estás seguro que deseas borrar el servicio "{service}"?</div>
+                </div>
+                <div className='confirmationDeleteBtnHairdresserModalContainer__btnsContainer'>
+                    <div className='confirmationDeleteBtnHairdresserModalContainer__btnsContainer__btns'>
+                        {
+                            !showSpinner?                            
+                            <button onClick={handleBtnDeleteService} className='confirmationDeleteBtnHairdresserModalContainer__btnsContainer__btns__prop'>Si</button>
+                            :
+                            <Spinner/>
+                        }
+                    </div>
+                    <div className='confirmationDeleteBtnHairdresserModalContainer__btnsContainer__btns'>
+                        <button onClick={handleBtnNonDeleteService} className='confirmationDeleteBtnHairdresserModalContainer__btnsContainer__btns__prop'>No</button>
                     </div>
                 </div>
             </div>
@@ -1078,7 +1175,6 @@ const Config = () => {
                                                 <div className='configContainer__config__hairdressersList__item__label__prop'>{hairdresser.name}</div>
                                             </div>
                                             <div className='configContainer__config__hairdressersList__item__btn'>
-                                                {/* <button onClick={()=>{handleBtnDeleteHairdresser(hairdresser._id)}} className='configContainer__config__hairdressersList__item__btn__prop'>Borrar</button> */}
                                                 <button onClick={()=>{handleOpenModalBtnDeleteHairdresser(hairdresser._id,hairdresser.name)}} className='configContainer__config__hairdressersList__item__btn__prop'>Borrar</button>
                                             </div>
                                         </div>
@@ -1132,7 +1228,7 @@ const Config = () => {
                                             </div>
                                             <div className='configContainer__config__servicesList__item__btn'>
                                                 <button onClick={()=>{handleBtnOpenUpdateService(service._id,service.title,service.value)}} className='configContainer__config__servicesList__item__btn__prop'>Editar</button>
-                                                <button onClick={()=>{handleBtnDeleteService(service._id)}} className='configContainer__config__servicesList__item__btn__prop'>Borrar</button>
+                                                <button onClick={()=>{handleOpenModalBtnDeleteService(service._id,service.title)}} className='configContainer__config__servicesList__item__btn__prop'>Borrar</button>
                                             </div>
                                         </div>
                                     </>
@@ -1158,7 +1254,7 @@ const Config = () => {
                                             </div>
                                             <div className='configContainer__config__servicesList__item__btn'>
                                                 <button onClick={()=>{handleBtnOpenUpdateService(service._id,service.title,service.value)}} className='configContainer__config__servicesList__item__btn__prop'>Editar</button>
-                                                <button onClick={()=>{handleBtnDeleteService(service._id)}} className='configContainer__config__servicesList__item__btn__prop'>Borrar</button>
+                                                <button onClick={()=>{handleOpenModalBtnDeleteService(service._id,service.title)}} className='configContainer__config__servicesList__item__btn__prop'>Borrar</button>
                                             </div>
                                         </div>
                                     </>
@@ -1347,9 +1443,9 @@ const Config = () => {
                                 </select>
                                 :
                                 <div className='configContainer__config__createWeekDay__scheduleBtn__schedule__inputSchedules'>
-                                    <input maxLength={2} value={inputCreateWeekDayH} onChange={handleInputCreateWeekDayH} onBlur={handleOnBlurInputCreateWeekDayH} className='configContainer__config__createWeekDay__scheduleBtn__schedule__inputSchedules__input' type="text" />
+                                    <input placeholder='HH' maxLength={2} value={inputCreateWeekDayH} onChange={handleInputCreateWeekDayH} onBlur={handleOnBlurInputCreateWeekDayH} className='configContainer__config__createWeekDay__scheduleBtn__schedule__inputSchedules__input' type="text" />
                                     <div>:</div>
-                                    <input maxLength={2} value={inputCreateWeekDayM} onChange={handleInputCreateWeekDayM} onBlur={handleOnBlurInputCreateWeekDayM} className='configContainer__config__createWeekDay__scheduleBtn__schedule__inputSchedules__input' type="text" />
+                                    <input placeholder='MM' maxLength={2} value={inputCreateWeekDayM} onChange={handleInputCreateWeekDayM} onBlur={handleOnBlurInputCreateWeekDayM} className='configContainer__config__createWeekDay__scheduleBtn__schedule__inputSchedules__input' type="text" />
                                 </div>
                             }
 
@@ -1417,6 +1513,9 @@ const Config = () => {
                     }
                         {
                           deleteHairdresserModal&&<DeleteHairdresserModal setDeleteHairdresserModal={setDeleteHairdresserModal} id={idHairdresser} hairdresser={nameHairdresser} />
+                        }
+                        {
+                          deleteServiceModal&&<DeleteServiceModal setDeleteServiceModal={setDeleteServiceModal} id={idService} service={titleService} />
                         }
                         {
                           updateServiceBtnIsOpen&&<UpdateServiceModal setUpdateServiceBtnIsOpen={setUpdateServiceBtnIsOpen} id={idService} title={titleService} value={valueService} />

@@ -987,7 +987,7 @@ const Shifts = () => {
                                             <h2 className='shiftsContainerIsLoggedIn__form__credentials__label-input__label__prop'>Precio:</h2>
                                         </div>
                                         <div className='shiftsContainerIsLoggedIn__form__credentials__label-input__input'>
-                                            <div className='shiftsContainerIsLoggedIn__form__credentials__label-input__input__price'>{inputPriceSh?`$ ${inputPriceSh}`:inputPriceSh}</div>
+                                            <div className='shiftsContainerIsLoggedIn__form__credentials__label-input__input__price'>{inputPriceSh?`$ ${inputPriceSh}`:'-'}</div>
                                         </div>
                                     </div>
                                 </>
@@ -1074,7 +1074,7 @@ const Shifts = () => {
                                             <h2 className='shiftsContainerIsLoggedIn__form__credentials__label-input__label__prop'>Precio:</h2>
                                         </div>
                                         <div className='shiftsContainerIsLoggedIn__form__credentials__label-input__input'>
-                                            <div className='shiftsContainerIsLoggedIn__form__credentials__label-input__input__price'>{inputPriceSh?`$ ${inputPriceSh}`:inputPriceSh}</div>
+                                            <div className='shiftsContainerIsLoggedIn__form__credentials__label-input__input__price'>{inputPriceSh?`$ ${inputPriceSh}`:'-'}</div>
                                         </div>
                                     </div>
                                 </>
@@ -1198,7 +1198,7 @@ const Shifts = () => {
                                     <h2 className='shiftsContainerIsLoggedIn__form__credentials__label-input__label__prop'>Precio:</h2>
                                 </div>
                                 <div className='shiftsContainerIsLoggedIn__form__credentials__label-input__input'>
-                                    <div className='shiftsContainerIsLoggedIn__form__credentials__label-input__input__price'>{inputPriceSh?`$ ${inputPriceSh}`:inputPriceSh}</div>
+                                    <div className='shiftsContainerIsLoggedIn__form__credentials__label-input__input__price'>{inputPriceSh?`$ ${inputPriceSh}`:'-'}</div>
                                 </div>
                             </div>
                             <div className='shiftsContainerIsLoggedIn__form__credentials__btn'>
@@ -1300,7 +1300,7 @@ const Shifts = () => {
                                     <h2 className='shiftsContainer__form__credentials__label-input__label__prop'>Precio:</h2>
                                 </div>
                                 <div className='shiftsContainer__form__credentials__label-input__input'>
-                                    <div className='shiftsContainer__form__credentials__label-input__input__price'>{inputPriceSh?`$ ${inputPriceSh}`:inputPriceSh}</div>
+                                    <div className='shiftsContainer__form__credentials__label-input__input__price'>{inputPriceSh?`$ ${inputPriceSh}`:'-'}</div>
                                 </div>
                             </div>
                             <div className='shiftsContainer__form__credentials__btn'>

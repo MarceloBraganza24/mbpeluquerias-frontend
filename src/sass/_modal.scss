@@ -1002,17 +1002,19 @@
         display: none;
     }
     &__btnsContainer {
-        width: 100%;
+        width: 40%;
         height: auto;
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        gap: 1vh;
+        // display: grid;
+        // grid-template-columns: 1fr 1fr;
+        //@include disFC();
+        display: flex;
+        gap: 4vh;
         &__btns {
             width: 100%;
             height: auto;
             @include disFC();
             &__prop {
-                width: 85%;
+                width: 100%;
                 @include btns;
             }
         }

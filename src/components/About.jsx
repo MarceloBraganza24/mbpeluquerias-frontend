@@ -181,7 +181,7 @@ const About = () => {
                 !editText ? 
                   <>
                     <div className='aboutContainer__descriptionContainerAdmin'>
-                      <p>Somos una peluquería dedicada especialmente para vos que estás buscando un cambio de look. La peluquería se encuentra ubicada en la Avenida Casey 1664, ciudad de Coronel Suárez, Pcia de Buenos Aires. El personal se conforma por tres peluqueros, Ayrton Fibiger, Mirko Fibiger y Ale Lambretch en el que cada día brindan la mejor atención hacia sus clientes para que se sientan cómodos y amenos con su corte de pelo.
+                      <p>Somos una peluquería dedicada especialmente para vos que estás buscando un cambio de look. La peluquería se encuentra ubicada en la calle Mitre 1250, ciudad de Coronel Suárez, Pcia de Buenos Aires. El personal se conforma por tres peluqueros, Juan Cruz Gonzales, Damián Perez y Sofía Lopez, en el que cada día brindan la mejor atención hacia sus clientes para que se sientan cómodos y amenos con su corte de pelo.
                       Marcamos nuestro propio estilo en corte, color y peinado, con personalización en cada servicio, calidad de atención e imagen. Nuestro objetivo es que quienes visiten nuestro salón vivan una experiencia de 360 grados.</p>
                       {/* <p>{queCortePeluqueriasAboutTextBD?queCortePeluqueriasAboutTextBD.aboutText:'Aún no existe ningun texto sobre la empresa, escriba uno'}</p> */}
                     </div>
@@ -223,7 +223,7 @@ const About = () => {
           <>
             <div className='aboutContainer'>
               <div className='aboutContainer__descriptionContainer'>
-                <p>Somos una peluquería dedicada especialmente para vos que estás buscando un cambio de look. La peluquería se encuentra ubicada en la Avenida Casey 1664, ciudad de Coronel Suárez, Pcia de Buenos Aires. El personal se conforma por tres peluqueros, Ayrton Fibiger, Mirko Fibiger y Ale Lambretch en el que cada día brindan la mejor atención hacia sus clientes para que se sientan cómodos y amenos con su corte de pelo.
+                <p>Somos una peluquería dedicada especialmente para vos que estás buscando un cambio de look. La peluquería se encuentra ubicada en la calle Mitre 1250, ciudad de Coronel Suárez, Pcia de Buenos Aires. El personal se conforma por tres peluqueros, Juan Cruz Gonzales, Damián Perez y Sofía Lopez, en el que cada día brindan la mejor atención hacia sus clientes para que se sientan cómodos y amenos con su corte de pelo.
                 Marcamos nuestro propio estilo en corte, color y peinado, con personalización en cada servicio, calidad de atención e imagen. Nuestro objetivo es que quienes visiten nuestro salón vivan una experiencia de 360 grados.</p>
                 {/* <p>{queCortePeluqueriasAboutTextBD?queCortePeluqueriasAboutTextBD.aboutText:'Aún no existe ningun texto sobre la empresa, escriba uno'}</p> */}
               </div>
@@ -237,7 +237,7 @@ const About = () => {
             </div>
             <div className='aboutContainer'>
               <div className='aboutContainer__descriptionContainerIsNotLogin'>
-              <p>Somos una peluquería dedicada especialmente para vos que estás buscando un cambio de look. La peluquería se encuentra ubicada en la Avenida Casey 1664, ciudad de Coronel Suárez, Pcia de Buenos Aires. El personal se conforma por tres peluqueros, Ayrton Fibiger, Mirko Fibiger y Ale Lambretch en el que cada día brindan la mejor atención hacia sus clientes para que se sientan cómodos y amenos con su corte de pelo.
+              <p>Somos una peluquería dedicada especialmente para vos que estás buscando un cambio de look. La peluquería se encuentra ubicada en la calle Mitre 1250, ciudad de Coronel Suárez, Pcia de Buenos Aires. El personal se conforma por tres peluqueros, Juan Cruz Gonzales, Damián Perez y Sofía Lopez, en el que cada día brindan la mejor atención hacia sus clientes para que se sientan cómodos y amenos con su corte de pelo.
               Marcamos nuestro propio estilo en corte, color y peinado, con personalización en cada servicio, calidad de atención e imagen. Nuestro objetivo es que quienes visiten nuestro salón vivan una experiencia de 360 grados.</p>
                 {/* <p>{queCortePeluqueriasAboutTextBD?queCortePeluqueriasAboutTextBD.aboutText:'Aún no existe ningun texto sobre la empresa, escriba uno'}</p> */}
               </div>
