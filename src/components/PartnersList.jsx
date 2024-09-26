@@ -29,6 +29,12 @@ const PartnersList = () => {
         optionsCompleteMembershipNumber.push(i)
     }
 
+    function cleanString(input) {
+        let trimmed = input.trim();
+        let cleaned = trimmed.replace(/\s+/g, ' ');
+        return cleaned;
+    }
+
     const membershipNumbers = partners.map(partner => partner.partner_number)
 
     function uniqueElements(arr1, arr2) {
@@ -45,13 +51,7 @@ const PartnersList = () => {
         optionsMembershipNumber.push(element)
     })
 
-    const date = new Date();
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    const hours = String(date.getHours()).padStart(2, '0');
-    const minutes = String(date.getMinutes()).padStart(2, '0');
-    const currentDate = `${year}-${month}-${day} ${hours}:${minutes}`;
+    
     
     partners.sort((a, b) => a.partner_number - b.partner_number);
 
@@ -248,14 +248,21 @@ const PartnersList = () => {
                 theme: "dark",
             });
         } else {
+            const date = new Date();
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            const hours = String(date.getHours()).padStart(2, '0');
+            const minutes = String(date.getMinutes()).padStart(2, '0');
+            const partner_datetime = `${year}-${month}-${day} ${hours}:${minutes}`;
             document.getElementById('btnCreatePartner').style.display = 'none';
             setShowSpinner(true);
             const partnerToCreate = {
-                first_name: inputFirstNamePaL,
-                last_name: inputLastNamePaL,
+                first_name: cleanString(inputFirstNamePaL),
+                last_name: cleanString(inputLastNamePaL),
                 partner_number: selectOptionMembershipNumber?selectOptionMembershipNumber:optionsMembershipNumber[0],
-                email: inputEmailPaL,
-                partner_datetime: currentDate
+                email: cleanString(inputEmailPaL),
+                partner_datetime: partner_datetime
             }
             const response = await fetch(`${apiUrl}/api/partners/register`, {
                 method: 'POST',         
@@ -356,6 +363,7 @@ const PartnersList = () => {
                         {
                             objetosFiltrados.length!=0&&
                             <div className='partnersListContainer__partnersList__headerMobile'>
+                                <div className='partnersListContainer__partnersList__headerMobile__label'>N° socio</div>
                                 <div className='partnersListContainer__partnersList__headerMobile__label'>Nombre</div>
                                 <div className='partnersListContainer__partnersList__headerMobile__label'>Apellido</div>
                             </div>

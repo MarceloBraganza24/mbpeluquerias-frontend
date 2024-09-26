@@ -14,13 +14,6 @@ const CreateProductModalMobile = ({setIsOpenCreateProductModalLocalMobile}) => {
     const [inputStockProdL, setInputStockProdL] = useState('');
     const [inputCategoryProdL, setInputCategoryProdL] = useState('');
     const [showSpinner, setShowSpinner] = useState(false);
-    /* const date = new Date();
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    const hours = String(date.getHours()).padStart(2, '0');
-    const minutes = String(date.getMinutes()).padStart(2, '0');
-    const currentDate = `${year}-${month}-${day} ${hours}:${minutes}`; */
 
     const cleanText = (text) => {
         const replacements = {
@@ -40,15 +33,15 @@ const CreateProductModalMobile = ({setIsOpenCreateProductModalLocalMobile}) => {
 
     const handleInputTitleProdL = (e) => {
         const texto = e.target.value;
-        const textCleaned = cleanString(texto);
-        const textToSaved = cleanText(textCleaned);
+        //const textCleaned = cleanString(texto);
+        const textToSaved = cleanText(texto);
         setInputTitleProdL(textToSaved)
     };
 
     const handleInputDescriptionProdL = (e) => {
         const inputValue = e.target.value;
-        const textCleaned = cleanString(inputValue);
-        const textToSaved = cleanText(textCleaned);
+        //const textCleaned = cleanString(inputValue);
+        const textToSaved = cleanText(inputValue);
         setInputDescriptionProdL(textToSaved)
     };
 
@@ -68,8 +61,8 @@ const CreateProductModalMobile = ({setIsOpenCreateProductModalLocalMobile}) => {
 
     const handleInputCategoryProdL = (e) => {
         const texto = e.target.value;
-        const textCleaned = cleanString(texto);
-        const textToSaved = cleanText(textCleaned);
+        //const textCleaned = cleanString(texto);
+        const textToSaved = cleanText(texto);
         setInputCategoryProdL(textToSaved)
     };
 
@@ -159,14 +152,22 @@ const CreateProductModalMobile = ({setIsOpenCreateProductModalLocalMobile}) => {
                 theme: "dark",
             });
         } else {
+            const date = new Date();
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            const hours = String(date.getHours()).padStart(2, '0');
+            const minutes = String(date.getMinutes()).padStart(2, '0');
+            const product_datetime = `${year}-${month}-${day} ${hours}:${minutes}`;
             document.getElementById('btnCreateProduct').style.display = 'none';
             setShowSpinner(true);
             const productToCreate = {
-                title: inputTitleProdL,
-                description: inputDescriptionProdL,
+                title: cleanString(inputTitleProdL),
+                description: cleanString(inputDescriptionProdL),
                 price: inputPriceProdL,
                 stock: inputStockProdL,
-                category: inputCategoryProdL
+                category: cleanString(inputCategoryProdL),
+                product_datetime: product_datetime
             }
             const response = await fetch(`${apiUrl}/api/products/register`, {
                 method: 'POST',         

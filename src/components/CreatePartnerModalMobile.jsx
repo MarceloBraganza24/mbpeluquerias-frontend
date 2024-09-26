@@ -13,13 +13,6 @@ const CreatePartnerModalMobile = ({setIsOpenCreatePartnerModalLocalMobile,result
     const [selectOptionMembershipNumber, setSelectOptionMembershipNumberShL] = useState('');
     const [inputEmailPaL, setInputEmailPaL] = useState('');
     const [showSpinner, setShowSpinner] = useState(false);
-    const date = new Date();
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    const hours = String(date.getHours()).padStart(2, '0');
-    const minutes = String(date.getMinutes()).padStart(2, '0');
-    const currentDate = `${year}-${month}-${day} ${hours}:${minutes}`;
     const optionsMembershipNumber = [];
     resultCompleteMembershipNumber.forEach((element) => {
         optionsMembershipNumber.push(element)
@@ -44,8 +37,8 @@ const CreatePartnerModalMobile = ({setIsOpenCreatePartnerModalLocalMobile,result
     const handleInputFirstNamePaL = (e) => {
         const texto = e.target.value;
         if(regexOnlyLetters(texto)) {
-            const textCleaned = cleanString(texto);
-            const textToSaved = cleanText(textCleaned);
+            //const textCleaned = cleanString(texto);
+            const textToSaved = cleanText(texto);
             setInputFirstNamePaL(textToSaved)
         }
     };
@@ -53,8 +46,8 @@ const CreatePartnerModalMobile = ({setIsOpenCreatePartnerModalLocalMobile,result
     const handleInputLastNamePaL = (e) => {
         const texto = e.target.value;
         if(regexOnlyLetters(texto)) {
-            const textCleaned = cleanString(texto);
-            const textToSaved = cleanText(textCleaned);
+            //const textCleaned = cleanString(texto);
+            const textToSaved = cleanText(texto);
             setInputLastNamePaL(textToSaved)
         }
     };
@@ -93,7 +86,7 @@ const CreatePartnerModalMobile = ({setIsOpenCreatePartnerModalLocalMobile,result
     }
 
     function regexOnlyLetters(str) {
-        const regex = /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s]*$/;
+        const regex = /^[a-zA-Z\s]*$/;
         return regex.test(str);
     }
 
@@ -154,14 +147,21 @@ const CreatePartnerModalMobile = ({setIsOpenCreatePartnerModalLocalMobile,result
                 theme: "dark",
             });
         } else {
+            const date = new Date();
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            const hours = String(date.getHours()).padStart(2, '0');
+            const minutes = String(date.getMinutes()).padStart(2, '0');
+            const partner_datetime = `${year}-${month}-${day} ${hours}:${minutes}`;
             document.getElementById('btnCreatePartner').style.display = 'none';
             setShowSpinner(true);
             const partnerToCreate = {
-                first_name: inputFirstNamePaL,
-                last_name: inputLastNamePaL,
+                first_name: cleanString(inputFirstNamePaL),
+                last_name: cleanString(inputLastNamePaL),
                 partner_number: selectOptionMembershipNumber?selectOptionMembershipNumber:optionsMembershipNumber[0],
-                email: inputEmailPaL,
-                partner_datetime: currentDate
+                email: cleanString(inputEmailPaL),
+                partner_datetime: partner_datetime
             }
             const response = await fetch(`${apiUrl}/api/partners/register`, {
                 method: 'POST',         

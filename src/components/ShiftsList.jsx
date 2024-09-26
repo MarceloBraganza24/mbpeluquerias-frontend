@@ -50,24 +50,8 @@ const ShiftsList = () => {
     hairdressers.forEach(item => {
         optionsHairdresser.push(`${item.name}`)
     })
-    //console.log(hairdressers)
     
-    /* const originalOptionsAyrtonMorScheduleISh = ['09:20','09:40','10:00','10:20','10:40','11:00','11:30','12:00','12:20','12:40',];
-    const originalOptionsAyrtonAftScheduleISh = ['15:00','15:30','16:00','16:20','16:40','17:00','17:30','18:00','18:20','18:40','19:00','19:20','19:40'];
-    const originalOptionsAyrtonSaturdayScheduleISh = ['09:20','09:40','10:00','10:20','10:40','11:00','11:30','12:00','12:20','12:40','13:00','13:20','13:40'];
-    
-    const originalOptionsMirkoMorScheduleISh = ['09:40','10:00','10:20','10:40','11:00','11:30','12:00'];
-    const originalOptionsMirkoAftScheduleISh = ['15:10','15:30','16:00','16:20','16:40','17:00','17:30','18:00','18:20','18:40'];
-    const originalOptionsMirkoSaturdayScheduleISh = ['09:40','10:00','10:20','10:40','11:00','11:30','11:50','12:10','12:30','13:00','13:20','13:40','14:00'];
-    
-    const originalOptionsAleMorScheduleISh = ['10:00','10:30','11:00','11:30','12:00','12:20'];
-    const originalOptionsAleAftScheduleISh = ['15:00','15:30','16:00','16:20','16:40','17:00','17:30','18:00','18:20'];
-    const originalOptionsAleTuesdayScheduleISh = ['10:00','10:30','11:00','11:30','12:00','12:30','16:00','16:30','17:00','17:30','18:00','18:20','18:40','19:00','19:20','19:40'];
-    const originalOptionsAleSaturdayScheduleISh = ['10:00','10:20','10:40','11:00','11:30','12:00','12:20','12:40','13:00','13:30','14:00','14:30']; */
-
     const optionsScheduleSh = [];
-    
-    //const shiftsByDate = filtrarPorFecha(shifts, formattedDate);
     
     const [showSpinner, setShowSpinner] = useState(false);
     
@@ -122,6 +106,8 @@ const ShiftsList = () => {
     const hairdressersFilteredByNotCancel = hairdressersFiltered.filter(shift => shift.cancelled != true);
 
     const workDaysByHairdresserWorkDayFiltered = workDays.filter(item => (item.hairdresser == selectOptionHairdresserShL && (item.work_day == (dayFormatedNewDate==6&&'Sabado')))
+        || (item.hairdresser == selectOptionHairdresserShL && (item.work_day == (dayFormatedNewDate==0&&'Domingo'))) 
+        || (item.hairdresser == selectOptionHairdresserShL && (item.work_day == (dayFormatedNewDate==1&&'Lunes'))) 
         || (item.hairdresser == selectOptionHairdresserShL && (item.work_day == (dayFormatedNewDate==2&&'Martes'))) 
         || (item.hairdresser == selectOptionHairdresserShL && (item.work_day == (dayFormatedNewDate==3&&'Miercoles'))) 
         || (item.hairdresser == selectOptionHairdresserShL && (item.work_day == (dayFormatedNewDate==4&&'Jueves'))) 
@@ -141,17 +127,11 @@ const ShiftsList = () => {
     const shiftsFiltered = shifts.filter(shift => shift.hairdresser == selectOptionHairdresserShL && shift.date == formattedDate);
     const schedulesHairdressersFilteredByNotCancel = shiftsFiltered.map(item => item.schedule)
 
-    //const hairdressersFilteredCreateShift = objetosFiltrados.filter(shift => shift.hairdresser == selectOptionHairdresserShL);
-    //const hairdressersFilteredByNotCancelCreateShift = hairdressersFilteredCreateShift.filter(shift => shift.cancelled != true);
-
     let filteredArray = schedulesByHairdresserDate.filter(time => !schedulesHairdressersFilteredByNotCancel.includes(time));
 
     filteredArray.forEach(res => {
         optionsScheduleSh.push(res)
     })
-
-
-    
     
     const [isMonted, setIsMonted] = useState(false);
 
@@ -635,7 +615,7 @@ const ShiftsList = () => {
                 progress: undefined,
                 theme: "dark",
             });
-        } else if(inputDateShLFormated < fechaActual) {
+        } /* else if(inputDateShLFormated < fechaActual) {
             toast('Debes ingresar una fecha a futuro', {
                 position: "top-right",
                 autoClose: 2000,
@@ -646,7 +626,7 @@ const ShiftsList = () => {
                 progress: undefined,
                 theme: "dark",
             });
-        } else if(selectOptionHairdresserShL == 'Peluquero' || selectOptionHairdresserShL == '') {
+        } */ else if(selectOptionHairdresserShL == 'Peluquero' || selectOptionHairdresserShL == '') {
             toast('Debes elegir un peluquero', {
                 position: "top-right",
                 autoClose: 2000,
@@ -1068,7 +1048,7 @@ const ShiftsList = () => {
                         }
                     </div>
 
-                    {cancelDaysModalLocal&&<CancelDaysModal handleCancelDaysListModalLocal={handleCancelDaysListModalLocal} holidaysData={holidays}/>}
+                    {cancelDaysModalLocal&&<CancelDaysModal handleCancelDaysListModalLocal={handleCancelDaysListModalLocal} holidaysData={holidays} hairdressers={hairdressers}/>}
                     <div className='shiftsListContainer__shiftsList__lengthShifts'>
                         <div className='shiftsListContainer__shiftsList__lengthShifts__cancelDaysList'>
                             {

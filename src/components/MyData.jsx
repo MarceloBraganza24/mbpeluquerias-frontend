@@ -17,6 +17,8 @@ const MyData = () => {
     const {menuOptionsModal,handleMenuOptionsModal,handleUpdateMyDataModal} = useContext(OpenModalContext);
     //const {inputCreatePriceOf,inputCreateValuePriceOf,handleInputCreatePriceOf,handleInputCreateValuePriceOf} = useContext(PricesContext);
     const [myData, setMyData] = useState([]);
+    const [partners, setPartners] = useState([]);
+    const partnerByEmailUser = partners.find(partner => partner.email == user.email)
     const apiUrl = import.meta.env.VITE_API_URL;
     const [showSpinner, setShowSpinner] = useState(false);
 
@@ -82,6 +84,12 @@ const MyData = () => {
             setMyData(myDataAll.data)
         }
         fetchMyData();
+        async function fetchPartners() {
+            const response = await fetch(`${apiUrl}/api/partners`)
+            const partnersAll = await response.json();
+            setPartners(partnersAll.data)
+        }
+        fetchPartners();
         const getCookie = (name) => {
             const cookieName = name + "=";
             const decodedCookie = decodeURIComponent(document.cookie);
@@ -170,6 +178,14 @@ const MyData = () => {
                                 </div>
                                 <div className='myDataContainer__data__label-input__labelData'>
                                     <div className='myDataContainer__data__label-input__labelData__prop'>{user.isMembershipFeePaid?'Si':'No'}</div>
+                                </div>
+                            </div>
+                            <div className='myDataContainer__data__label-input'>
+                                <div className='myDataContainer__data__label-input__labelNPartner'>
+                                    <div className='myDataContainer__data__label-input__labelNPartner__prop'>N° socio:</div>
+                                </div>
+                                <div className='myDataContainer__data__label-input__labelData'>
+                                    <div className='myDataContainer__data__label-input__labelData__prop'>{partnerByEmailUser?partnerByEmailUser.partner_number:'-'}</div>
                                 </div>
                             </div>
                             <div className='myDataContainer__data__label-input'>

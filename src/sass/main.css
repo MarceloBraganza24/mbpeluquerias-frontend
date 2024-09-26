@@ -3357,7 +3357,7 @@ h2 {
   .partnersContainerIsLoggedIn__phrase {
     color: #04064e;
     padding-bottom: 1vh;
-    font-size: 20px;
+    font-size: 16px;
     padding: 0vh 0vh 1vh 0vh;
   }
   .partnersContainerIsLoggedIn__credentials {
@@ -3744,7 +3744,7 @@ h2 {
     width: 100%;
     height: auto;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     text-align: center;
     color: #04064e;
     padding: 0vh 0vh 1vh 0vh;
@@ -3965,7 +3965,7 @@ h2 {
     width: 100%;
     height: auto;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     text-align: center;
     color: white;
     border-top: 0.3vh solid #04064e;
@@ -7104,6 +7104,114 @@ h2 {
   box-shadow: 2px 2px 5px black, -2px -2px 5px black; /* Sombra más ligera al hacer clic */
 }
 
+.confirmationDeleteBtnCompanyModalContainer {
+  background-color: rgb(143, 177, 221);
+  width: 35%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 0.5vh solid #04064e;
+  border-radius: 2vh;
+  padding: 1vh 2vh 3vh 2vh;
+  z-index: 2;
+  gap: 1vh;
+}
+.confirmationDeleteBtnCompanyModalContainer__ask {
+  display: block;
+  font-size: 25px;
+  color: #04064e;
+  text-align: center;
+}
+.confirmationDeleteBtnCompanyModalContainer__askMobile {
+  display: none;
+}
+.confirmationDeleteBtnCompanyModalContainer__btnsContainer {
+  width: 40%;
+  height: auto;
+  display: flex;
+  gap: 4vh;
+}
+.confirmationDeleteBtnCompanyModalContainer__btnsContainer__btns {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.confirmationDeleteBtnCompanyModalContainer__btnsContainer__btns__prop {
+  width: 100%;
+  background-color: #04064e;
+  color: white;
+  border-color: black;
+  border-radius: 5vh;
+  box-shadow: 4px 4px 10px black, -4px -4px 10px black;
+  transition: transform 0.2s;
+}
+.confirmationDeleteBtnCompanyModalContainer__btnsContainer__btns__prop:active {
+  transform: translateY(2px); /* Baja el botón al hacer clic */
+  box-shadow: 2px 2px 5px black, -2px -2px 5px black; /* Sombra más ligera al hacer clic */
+}
+
+.confirmationDeleteBtnVariouModalContainer {
+  background-color: rgb(143, 177, 221);
+  width: 35%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 0.5vh solid #04064e;
+  border-radius: 2vh;
+  padding: 1vh 2vh 3vh 2vh;
+  z-index: 2;
+  gap: 1vh;
+}
+.confirmationDeleteBtnVariouModalContainer__ask {
+  display: block;
+  font-size: 25px;
+  color: #04064e;
+  text-align: center;
+}
+.confirmationDeleteBtnVariouModalContainer__askMobile {
+  display: none;
+}
+.confirmationDeleteBtnVariouModalContainer__btnsContainer {
+  width: 40%;
+  height: auto;
+  display: flex;
+  gap: 4vh;
+}
+.confirmationDeleteBtnVariouModalContainer__btnsContainer__btns {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.confirmationDeleteBtnVariouModalContainer__btnsContainer__btns__prop {
+  width: 100%;
+  background-color: #04064e;
+  color: white;
+  border-color: black;
+  border-radius: 5vh;
+  box-shadow: 4px 4px 10px black, -4px -4px 10px black;
+  transition: transform 0.2s;
+}
+.confirmationDeleteBtnVariouModalContainer__btnsContainer__btns__prop:active {
+  transform: translateY(2px); /* Baja el botón al hacer clic */
+  box-shadow: 2px 2px 5px black, -2px -2px 5px black; /* Sombra más ligera al hacer clic */
+}
+
 .confirmationPayMembershipFeeModalContainer {
   background-color: rgb(143, 177, 221);
   width: 50%;
@@ -8089,6 +8197,59 @@ h2 {
     transform: translateY(2px); /* Baja el botón al hacer clic */
     box-shadow: 2px 2px 5px black, -2px -2px 5px black; /* Sombra más ligera al hacer clic */
   }
+  .confirmationDeleteBtnVariouModalContainer {
+    background-color: rgb(143, 177, 221);
+    width: 80%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 0.5vh solid #04064e;
+    border-radius: 2vh;
+    padding: 1vh 2vh 3vh 2vh;
+    z-index: 2;
+    gap: 1vh;
+  }
+  .confirmationDeleteBtnVariouModalContainer__ask {
+    display: block;
+    font-size: 20px;
+    color: #04064e;
+    text-align: center;
+  }
+  .confirmationDeleteBtnVariouModalContainer__askMobile {
+    display: none;
+  }
+  .confirmationDeleteBtnVariouModalContainer__btnsContainer {
+    width: 60%;
+    height: auto;
+    display: flex;
+    gap: 4vh;
+  }
+  .confirmationDeleteBtnVariouModalContainer__btnsContainer__btns {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .confirmationDeleteBtnVariouModalContainer__btnsContainer__btns__prop {
+    width: 100%;
+    background-color: #04064e;
+    color: white;
+    border-color: black;
+    border-radius: 5vh;
+    box-shadow: 4px 4px 10px black, -4px -4px 10px black;
+    transition: transform 0.2s;
+  }
+  .confirmationDeleteBtnVariouModalContainer__btnsContainer__btns__prop:active {
+    transform: translateY(2px); /* Baja el botón al hacer clic */
+    box-shadow: 2px 2px 5px black, -2px -2px 5px black; /* Sombra más ligera al hacer clic */
+  }
   .confirmationDeletePriceModalMobileContainer {
     background-color: rgb(143, 177, 221);
     width: 90%;
@@ -8201,6 +8362,59 @@ h2 {
     transform: translateY(2px); /* Baja el botón al hacer clic */
     box-shadow: 2px 2px 5px black, -2px -2px 5px black; /* Sombra más ligera al hacer clic */
   }
+  .confirmationDeleteBtnCompanyModalContainer {
+    background-color: rgb(143, 177, 221);
+    width: 80%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 0.5vh solid #04064e;
+    border-radius: 2vh;
+    padding: 1vh 2vh 3vh 2vh;
+    z-index: 2;
+    gap: 1vh;
+  }
+  .confirmationDeleteBtnCompanyModalContainer__ask {
+    display: block;
+    font-size: 18px;
+    color: #04064e;
+    text-align: center;
+  }
+  .confirmationDeleteBtnCompanyModalContainer__askMobile {
+    display: none;
+  }
+  .confirmationDeleteBtnCompanyModalContainer__btnsContainer {
+    width: 60%;
+    height: auto;
+    display: flex;
+    gap: 4vh;
+  }
+  .confirmationDeleteBtnCompanyModalContainer__btnsContainer__btns {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .confirmationDeleteBtnCompanyModalContainer__btnsContainer__btns__prop {
+    width: 100%;
+    background-color: #04064e;
+    color: white;
+    border-color: black;
+    border-radius: 5vh;
+    box-shadow: 4px 4px 10px black, -4px -4px 10px black;
+    transition: transform 0.2s;
+  }
+  .confirmationDeleteBtnCompanyModalContainer__btnsContainer__btns__prop:active {
+    transform: translateY(2px); /* Baja el botón al hacer clic */
+    box-shadow: 2px 2px 5px black, -2px -2px 5px black; /* Sombra más ligera al hacer clic */
+  }
   .confirmationResetPassModalContainer {
     background-color: rgb(143, 177, 221);
     width: 90%;
@@ -8259,7 +8473,7 @@ h2 {
   }
   .cancelDaysModalContainer {
     background-color: rgb(143, 177, 221);
-    width: 90%;
+    width: 95%;
     height: 70vh;
     display: flex;
     flex-direction: column;
@@ -8339,7 +8553,7 @@ h2 {
   }
   .cancelDaysModalContainer__cancelDaysList__itemCancelDay__prop {
     color: #04064e;
-    font-size: 15px;
+    font-size: 14px;
     text-align: center;
   }
   .cancelDaysModalContainer__cancelDaysList__itemCancelDay__btn {
@@ -9409,7 +9623,7 @@ h2 {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
+    color: #04064e;
     font-size: 16px;
     text-align: center;
   }
@@ -11778,6 +11992,18 @@ h2 {
   text-align: center;
   font-size: 25px;
 }
+.myDataContainer__data__label-input__labelNPartner {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #04064e;
+}
+.myDataContainer__data__label-input__labelNPartner__prop {
+  text-align: center;
+  font-size: 30px;
+}
 .myDataContainer__btn {
   width: 100%;
   height: auto;
@@ -11861,6 +12087,18 @@ h2 {
     text-align: center;
     font-size: 18px;
   }
+  .myDataContainer__data__label-input__labelNPartner {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #04064e;
+  }
+  .myDataContainer__data__label-input__labelNPartner__prop {
+    text-align: center;
+    font-size: 18px;
+  }
   .myDataContainer__btn {
     width: 100%;
     height: auto;
@@ -11915,6 +12153,126 @@ h2 {
   color: #04064e;
   animation: fadeIn 2s ease-in;
 }
+.configContainer__config__company {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: start;
+  padding-left: 2vh;
+  border-top: 0.3vh solid #04064e;
+}
+.configContainer__config__company__prop {
+  font-size: 25px;
+  color: #04064e;
+}
+.configContainer__config__addCompany {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1vh 0vh;
+}
+.configContainer__config__addCompany__addCompanyContainer {
+  width: 50%;
+  height: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 1vh 0vh;
+}
+.configContainer__config__addCompany__addCompanyContainer__input {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.configContainer__config__addCompany__addCompanyContainer__input__prop {
+  width: 80%;
+  height: 35px;
+  border-radius: 1vh;
+  border: 0.3vh solid #04064e;
+  color: #04064e;
+}
+.configContainer__config__addCompany__addCompanyContainer__input__prop::-moz-placeholder {
+  text-align: center;
+}
+.configContainer__config__addCompany__addCompanyContainer__input__prop::placeholder {
+  text-align: center;
+}
+.configContainer__config__addCompany__addCompanyContainer__btn {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.configContainer__config__addCompany__addCompanyContainer__btn__prop {
+  width: 90%;
+  height: 35px;
+  background-color: #04064e;
+  color: white;
+  border-color: black;
+  border-radius: 5vh;
+  box-shadow: 4px 4px 10px black, -4px -4px 10px black;
+  transition: transform 0.2s;
+}
+.configContainer__config__addCompany__addCompanyContainer__btn__prop:active {
+  transform: translateY(2px); /* Baja el botón al hacer clic */
+  box-shadow: 2px 2px 5px black, -2px -2px 5px black; /* Sombra más ligera al hacer clic */
+}
+.configContainer__config__companiesList {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 2vh;
+  padding-bottom: 2vh;
+}
+.configContainer__config__companiesList__titleList {
+  font-size: 25px;
+  color: #04064e;
+}
+.configContainer__config__companiesList__item {
+  width: 40%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.configContainer__config__companiesList__item__label {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.configContainer__config__companiesList__item__label__prop {
+  font-size: 22px;
+  color: #04064e;
+}
+.configContainer__config__companiesList__item__btn {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.configContainer__config__companiesList__item__btn__prop {
+  width: 50%;
+  background-color: #04064e;
+  color: white;
+  border-color: black;
+  border-radius: 5vh;
+  box-shadow: 4px 4px 10px black, -4px -4px 10px black;
+  transition: transform 0.2s;
+}
+.configContainer__config__companiesList__item__btn__prop:active {
+  transform: translateY(2px); /* Baja el botón al hacer clic */
+  box-shadow: 2px 2px 5px black, -2px -2px 5px black; /* Sombra más ligera al hacer clic */
+}
 .configContainer__config__hairdresser {
   width: 100%;
   height: auto;
@@ -11957,10 +12315,10 @@ h2 {
   color: #04064e;
 }
 .configContainer__config__addHairdresser__addHairdresserContainer__input__prop::-moz-placeholder {
-  padding-left: 0.5vh;
+  text-align: center;
 }
 .configContainer__config__addHairdresser__addHairdresserContainer__input__prop::placeholder {
-  padding-left: 0.5vh;
+  text-align: center;
 }
 .configContainer__config__addHairdresser__addHairdresserContainer__btn {
   width: 100%;
@@ -11998,7 +12356,7 @@ h2 {
   color: #04064e;
 }
 .configContainer__config__hairdressersList__item {
-  width: 40%;
+  width: 80%;
   height: auto;
   display: flex;
   justify-content: center;
@@ -12062,6 +12420,9 @@ h2 {
   grid-template-columns: 1fr 1fr 1fr 1fr;
   padding: 1vh 0vh;
 }
+.configContainer__config__addService__addServiceContainer__inputMobile {
+  display: none;
+}
 .configContainer__config__addService__addServiceContainer__input {
   width: 100%;
   height: auto;
@@ -12077,10 +12438,10 @@ h2 {
   color: #04064e;
 }
 .configContainer__config__addService__addServiceContainer__input__prop::-moz-placeholder {
-  padding-left: 0.5vh;
+  text-align: center;
 }
 .configContainer__config__addService__addServiceContainer__input__prop::placeholder {
-  padding-left: 0.5vh;
+  text-align: center;
 }
 .configContainer__config__addService__addServiceContainer__select {
   width: 100%;
@@ -12240,18 +12601,15 @@ h2 {
   font-size: 22px;
   color: #04064e;
 }
+.configContainer__config__membershipFeeList__item__label__inputMobile {
+  display: none;
+}
 .configContainer__config__membershipFeeList__item__label__input {
-  width: 40%;
+  width: 70%;
   height: 35px;
   border-radius: 1vh;
   border: 0.3vh solid #04064e;
   text-align: center;
-}
-.configContainer__config__membershipFeeList__item__label__input::-moz-placeholder {
-  padding-left: 1vh;
-}
-.configContainer__config__membershipFeeList__item__label__input::placeholder {
-  padding-left: 1vh;
 }
 .configContainer__config__membershipFeeList__item__btn {
   width: 100%;
@@ -12316,10 +12674,10 @@ h2 {
   color: #04064e;
 }
 .configContainer__config__addVarious__addVariousContainer__input__prop::-moz-placeholder {
-  padding-left: 0.5vh;
+  text-align: center;
 }
 .configContainer__config__addVarious__addVariousContainer__input__prop::placeholder {
-  padding-left: 0.5vh;
+  text-align: center;
 }
 .configContainer__config__addVarious__addVariousContainer__select {
   width: 100%;
@@ -12652,7 +13010,7 @@ h2 {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 15vh 0vh;
+    padding: 15vh 0vh 3vh 0vh;
   }
   .configContainer__config {
     background-color: steelblue;
@@ -12671,6 +13029,128 @@ h2 {
     font-size: 35px;
     color: #04064e;
     animation: fadeIn 2s ease-in;
+  }
+  .configContainer__config__company {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: start;
+    padding-left: 2vh;
+    border-top: 0.3vh solid #04064e;
+  }
+  .configContainer__config__company__prop {
+    font-size: 25px;
+    color: #04064e;
+  }
+  .configContainer__config__addCompany {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1vh 0vh;
+  }
+  .configContainer__config__addCompany__addCompanyContainer {
+    width: 90%;
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 1vh 0vh;
+  }
+  .configContainer__config__addCompany__addCompanyContainer__input {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .configContainer__config__addCompany__addCompanyContainer__input__prop {
+    width: 100%;
+    height: 35px;
+    border-radius: 1vh;
+    border: 0.3vh solid #04064e;
+    color: #04064e;
+  }
+  .configContainer__config__addCompany__addCompanyContainer__input__prop::-moz-placeholder {
+    font-size: 14px;
+    text-align: center;
+  }
+  .configContainer__config__addCompany__addCompanyContainer__input__prop::placeholder {
+    font-size: 14px;
+    text-align: center;
+  }
+  .configContainer__config__addCompany__addCompanyContainer__btn {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .configContainer__config__addCompany__addCompanyContainer__btn__prop {
+    width: 60%;
+    height: 35px;
+    background-color: #04064e;
+    color: white;
+    border-color: black;
+    border-radius: 5vh;
+    box-shadow: 4px 4px 10px black, -4px -4px 10px black;
+    transition: transform 0.2s;
+  }
+  .configContainer__config__addCompany__addCompanyContainer__btn__prop:active {
+    transform: translateY(2px); /* Baja el botón al hacer clic */
+    box-shadow: 2px 2px 5px black, -2px -2px 5px black; /* Sombra más ligera al hacer clic */
+  }
+  .configContainer__config__companiesList {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2vh;
+    padding-bottom: 2vh;
+  }
+  .configContainer__config__companiesList__titleList {
+    font-size: 25px;
+    color: #04064e;
+  }
+  .configContainer__config__companiesList__item {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .configContainer__config__companiesList__item__label {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .configContainer__config__companiesList__item__label__prop {
+    font-size: 18px;
+    color: #04064e;
+  }
+  .configContainer__config__companiesList__item__btn {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .configContainer__config__companiesList__item__btn__prop {
+    width: 50%;
+    background-color: #04064e;
+    color: white;
+    border-color: black;
+    border-radius: 5vh;
+    box-shadow: 4px 4px 10px black, -4px -4px 10px black;
+    transition: transform 0.2s;
+  }
+  .configContainer__config__companiesList__item__btn__prop:active {
+    transform: translateY(2px); /* Baja el botón al hacer clic */
+    box-shadow: 2px 2px 5px black, -2px -2px 5px black; /* Sombra más ligera al hacer clic */
   }
   .configContainer__config__hairdresser {
     width: 100%;
@@ -12693,7 +13173,7 @@ h2 {
     padding: 1vh 0vh;
   }
   .configContainer__config__addHairdresser__addHairdresserContainer {
-    width: 95%;
+    width: 90%;
     height: auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -12714,10 +13194,12 @@ h2 {
     color: #04064e;
   }
   .configContainer__config__addHairdresser__addHairdresserContainer__input__prop::-moz-placeholder {
-    padding-left: 0.5vh;
+    font-size: 14px;
+    text-align: center;
   }
   .configContainer__config__addHairdresser__addHairdresserContainer__input__prop::placeholder {
-    padding-left: 0.5vh;
+    font-size: 14px;
+    text-align: center;
   }
   .configContainer__config__addHairdresser__addHairdresserContainer__btn {
     width: 100%;
@@ -12727,7 +13209,7 @@ h2 {
     align-items: center;
   }
   .configContainer__config__addHairdresser__addHairdresserContainer__btn__prop {
-    width: 80%;
+    width: 60%;
     height: 30px;
     background-color: #04064e;
     color: white;
@@ -12817,31 +13299,32 @@ h2 {
     height: auto;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    padding: 1vh 0vh;
+    padding: 1vh 1vh;
     gap: 0.5vh;
   }
   .configContainer__config__addService__addServiceContainer__input {
+    display: none;
+  }
+  .configContainer__config__addService__addServiceContainer__inputMobile {
     width: 100%;
     height: auto;
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  .configContainer__config__addService__addServiceContainer__input__prop {
+  .configContainer__config__addService__addServiceContainer__inputMobile__prop {
     width: 100%;
     height: 35px;
     border-radius: 1vh;
     border: 0.3vh solid #04064e;
     color: #04064e;
   }
-  .configContainer__config__addService__addServiceContainer__input__prop::-moz-placeholder {
-    padding-left: 0.5vh;
-    font-size: 15px;
+  .configContainer__config__addService__addServiceContainer__inputMobile__prop::-moz-placeholder {
+    font-size: 14px;
     text-align: center;
   }
-  .configContainer__config__addService__addServiceContainer__input__prop::placeholder {
-    padding-left: 0.5vh;
-    font-size: 15px;
+  .configContainer__config__addService__addServiceContainer__inputMobile__prop::placeholder {
+    font-size: 14px;
     text-align: center;
   }
   .configContainer__config__addService__addServiceContainer__select {
@@ -12854,7 +13337,7 @@ h2 {
   .configContainer__config__addService__addServiceContainer__select__prop {
     width: 100%;
     height: 35px;
-    font-size: 15px;
+    font-size: 12px;
     background-color: #04064e;
     color: white;
     border-color: black;
@@ -12876,7 +13359,7 @@ h2 {
     align-items: center;
   }
   .configContainer__config__addService__addServiceContainer__btn__prop {
-    width: 80%;
+    width: 90%;
     height: 30px;
     font-size: 15px;
     background-color: #04064e;
@@ -12934,7 +13417,7 @@ h2 {
     align-items: center;
   }
   .configContainer__config__servicesList__item__label__prop {
-    font-size: 12px;
+    font-size: 10px;
     color: #04064e;
   }
   .configContainer__config__servicesList__item__btn {
@@ -12987,7 +13470,7 @@ h2 {
     color: #04064e;
   }
   .configContainer__config__membershipFeeList__item {
-    width: 80%;
+    width: 95%;
     height: auto;
     display: flex;
     justify-content: center;
@@ -13008,17 +13491,23 @@ h2 {
     color: #04064e;
   }
   .configContainer__config__membershipFeeList__item__label__input {
+    display: none;
+  }
+  .configContainer__config__membershipFeeList__item__label__inputMobile {
     width: 100%;
     height: 35px;
+    display: block;
     border-radius: 1vh;
     border: 0.3vh solid #04064e;
     text-align: center;
   }
-  .configContainer__config__membershipFeeList__item__label__input::-moz-placeholder {
-    padding-left: 1vh;
+  .configContainer__config__membershipFeeList__item__label__inputMobile::-moz-placeholder {
+    font-size: 14px;
+    text-align: center;
   }
-  .configContainer__config__membershipFeeList__item__label__input::placeholder {
-    padding-left: 1vh;
+  .configContainer__config__membershipFeeList__item__label__inputMobile::placeholder {
+    font-size: 14px;
+    text-align: center;
   }
   .configContainer__config__membershipFeeList__item__btn {
     width: 100%;
@@ -13029,14 +13518,14 @@ h2 {
     gap: 1vh;
   }
   .configContainer__config__membershipFeeList__item__btn__prop {
-    width: 80%;
+    width: 90%;
     background-color: #04064e;
     color: white;
     border-color: black;
     border-radius: 5vh;
     box-shadow: 4px 4px 10px black, -4px -4px 10px black;
     transition: transform 0.2s;
-    font-size: 12px;
+    font-size: 15px;
     padding: 0.5vh 1vh;
   }
   .configContainer__config__membershipFeeList__item__btn__prop:active {
@@ -13097,10 +13586,12 @@ h2 {
     color: #04064e;
   }
   .configContainer__config__addVarious__addVariousContainer__input__prop::-moz-placeholder {
-    padding-left: 0.5vh;
+    font-size: 12px;
+    text-align: center;
   }
   .configContainer__config__addVarious__addVariousContainer__input__prop::placeholder {
-    padding-left: 0.5vh;
+    font-size: 12px;
+    text-align: center;
   }
   .configContainer__config__addVarious__addVariousContainer__btn {
     width: 100%;
@@ -13110,7 +13601,7 @@ h2 {
     align-items: center;
   }
   .configContainer__config__addVarious__addVariousContainer__btn__prop {
-    width: 80%;
+    width: 90%;
     height: 30px;
     background-color: #04064e;
     color: white;
@@ -13152,7 +13643,7 @@ h2 {
     align-items: center;
   }
   .configContainer__config__variousList__item__label__prop {
-    font-size: 10px;
+    font-size: 15px;
     color: #04064e;
   }
   .configContainer__config__variousList__item__btn {
@@ -13195,7 +13686,7 @@ h2 {
     height: auto;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    padding-top: 1vh;
+    padding-top: 2vh;
   }
   .configContainer__config__createWeekDayMobile__hairdresser {
     width: 100%;
@@ -13205,7 +13696,7 @@ h2 {
     align-items: center;
   }
   .configContainer__config__createWeekDayMobile__hairdresser__select {
-    width: 80%;
+    width: 90%;
     height: 30px;
     background-color: #04064e;
     color: white;
@@ -13228,7 +13719,7 @@ h2 {
     align-items: center;
   }
   .configContainer__config__createWeekDayMobile__day__select {
-    width: 80%;
+    width: 90%;
     height: 30px;
     background-color: #04064e;
     color: white;
@@ -13269,7 +13760,7 @@ h2 {
     } */
   }
   .configContainer__config__createWeekDayMobile__schedule__select {
-    width: 80%;
+    width: 90%;
     height: 30px;
     background-color: #04064e;
     color: white;
@@ -13327,7 +13818,7 @@ h2 {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 1vh;
+    padding-top: 2vh;
   }
   .configContainer__config__createWeekDayMobile__inputsCreateWorkDayBtns__inputs {
     width: 100%;

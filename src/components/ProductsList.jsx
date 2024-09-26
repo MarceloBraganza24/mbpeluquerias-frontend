@@ -24,6 +24,12 @@ const ProductsList = () => {
     const [isMonted, setIsMonted] = useState(false);
     const [isOpenCreateProductModalLocalMobile, setIsOpenCreateProductModalLocalMobile] = useState(false);
     
+    function cleanString(input) {
+        let trimmed = input.trim();
+        let cleaned = trimmed.replace(/\s+/g, ' ');
+        return cleaned;
+    }
+
     useEffect(() => {
         const interval = setInterval(() => {
             menuOptionsModal&&handleMenuOptionsModal(false);
@@ -218,14 +224,22 @@ const ProductsList = () => {
                 theme: "dark",
             });
         } else {
+            const date = new Date();
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            const hours = String(date.getHours()).padStart(2, '0');
+            const minutes = String(date.getMinutes()).padStart(2, '0');
+            const product_datetime = `${year}-${month}-${day} ${hours}:${minutes}`;
             document.getElementById('btnCreateProduct').style.display = 'none';
             setShowSpinner(true);
             const productToCreate = {
-                title: inputTitleProd,
-                description: inputDescriptionProd,
+                title: cleanString(inputTitleProd),
+                description: cleanString(inputDescriptionProd),
                 price: inputPriceProd,
                 stock: inputStockProd,
-                category: inputCategoryProd
+                category: cleanString(inputCategoryProd),
+                product_datetime: product_datetime
             }
             const response = await fetch(`${apiUrl}/api/products/register`, {
                 method: 'POST',         

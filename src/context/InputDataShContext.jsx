@@ -32,7 +32,7 @@ export const ParentComponent = ({children}) => {
         return text.split('').map(char => replacements[char] || char).join('');
     };
 
-    /* useEffect(() => {
+    useEffect(() => {
         const interval = setInterval(() => {
             async function fetchServicesData() {
                 const response = await fetch(`${apiUrl}/api/services`)
@@ -78,7 +78,7 @@ export const ParentComponent = ({children}) => {
         return () => {
             clearInterval(interval);
         };
-    }, [isMonted]); */
+    }, [isMonted]);
 
     useEffect(() => {
         async function fetchServicesData() {
@@ -127,15 +127,15 @@ export const ParentComponent = ({children}) => {
     },[])   
 
     function regexOnlyLetters(str) {
-        const regex = /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s]*$/;
+        const regex = /^[a-zA-Z\s]*$/;
         return regex.test(str);
     }
 
     const handleInputFirstNameSh = (e) => {
         const texto = e.target.value;
         if(regexOnlyLetters(texto)) {
-            const textCleaned = cleanString(texto);
-            const textToSaved = cleanText(textCleaned);
+            //const textCleaned = cleanString(texto);
+            const textToSaved = cleanText(texto);
             setInputFirstNameSh(textToSaved)
         }
     };
@@ -143,8 +143,8 @@ export const ParentComponent = ({children}) => {
     const handleInputLastNameSh = (e) => {
         const texto = e.target.value;
         if(regexOnlyLetters(texto)) {
-            const textCleaned = cleanString(texto);
-            const textToSaved = cleanText(textCleaned);
+            //const textCleaned = cleanString(texto);
+            const textToSaved = cleanText(texto);
             setInputLastNameSh(textToSaved)
         }
     };

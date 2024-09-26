@@ -11,17 +11,9 @@ const SingUp = () => {
     const [password, setPassword] = useState('');
     const [showSpinner, setShowSpinner] = useState(false);
     const apiUrl = import.meta.env.VITE_API_URL;
-    const date = new Date();
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    const hours = String(date.getHours()).padStart(2, '0');
-    const minutes = String(date.getMinutes()).padStart(2, '0');
-    const currentDate = `${year}-${month}-${day} ${hours}:${minutes}`;
-    const user_datetime = currentDate;
 
     function regexOnlyLetters(str) {
-        const regex = /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s]*$/;
+        const regex = /^[a-zA-Z\s]*$/;
         return regex.test(str);
     }
 
@@ -44,8 +36,8 @@ const SingUp = () => {
     const handleInputFirstName = (e) => {
         const texto = e.target.value;
         if(regexOnlyLetters(texto)) {
-            const textCleaned = cleanString(texto);
-            const textToSaved = cleanText(textCleaned);
+            //const textCleaned = cleanString(texto);
+            const textToSaved = cleanText(texto);
             setFirstName(textToSaved)
         }
     }
@@ -53,22 +45,22 @@ const SingUp = () => {
     const handleInputLastName = (e) => {
         const texto = e.target.value;
         if(regexOnlyLetters(texto)) {
-            const textCleaned = cleanString(texto);
-            const textToSaved = cleanText(textCleaned);
+            //const textCleaned = cleanString(texto);
+            const textToSaved = cleanText(texto);
             setLastName(textToSaved)
         }
     }
 
     const handleInputEmail = (e) => {
         const texto = e.target.value;
-        const textCleaned = cleanString(texto);
-        const textToSaved = cleanText(textCleaned);
+        //const textCleaned = cleanString(texto);
+        const textToSaved = cleanText(texto);
         setEmail(textToSaved)
     }
 
     const handleInputPassword = (e) => {
         const texto = e.target.value;
-        setPassword(cleanString(texto))
+        setPassword(texto)
     }
 
     function isValidUTF8(str) {
@@ -151,14 +143,30 @@ const SingUp = () => {
                     theme: "dark",
                 });
             } else {
+                const date = new Date();
+                const year = date.getFullYear();
+                const month = String(date.getMonth() + 1).padStart(2, '0');
+                const day = String(date.getDate()).padStart(2, '0');
+                const hours = String(date.getHours()).padStart(2, '0');
+                const minutes = String(date.getMinutes()).padStart(2, '0');
+                const currentDate = `${year}-${month}-${day} ${hours}:${minutes}`;
+                const user_datetime = currentDate;
                 setShowSpinner(true);
+                const obj = {
+                    first_name: cleanString(first_name),
+                    last_name: cleanString(last_name),
+                    email: cleanString(email),
+                    password: cleanString(password),
+                    user_datetime: user_datetime
+                }
                 const response = await fetch(`${apiUrl}/api/sessions/singUp`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json; charset=utf-8'
                     },
-                    body: JSON.stringify({ first_name, last_name, email, password, user_datetime })
+                    body: JSON.stringify(obj)
                 })
+                
                 const data = await response.json();
                 if (response.ok) {
                     navigate("/login");

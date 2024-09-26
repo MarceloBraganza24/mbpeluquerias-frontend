@@ -39,6 +39,8 @@ const Partners = () => {
     const [isMembershipFeeExpired, setIsMembershipFeeExpired] = useState(false);
 
     const [tickets, setTickets] = useState([]);
+    const [companies, setCompanies] = useState([]);
+    const company = companies.find(company => company.name)
 
     const palabrasABuscar = ["cuota", "socio"];
     const membershipFees = prices.find(objeto => 
@@ -381,6 +383,12 @@ const Partners = () => {
                 setTickets(ticketsAll.data)
             }
             fetchTicketsData();
+            async function fetchCompaniesData() {
+                const response = await fetch(`${apiUrl}/api/companies`)
+                const companiesAll = await response.json();
+                setCompanies(companiesAll.data)
+            }
+            fetchCompaniesData();
             const getCookie = (name) => {
                 const cookieName = name + "=";
                 const decodedCookie = decodeURIComponent(document.cookie);
@@ -445,6 +453,12 @@ const Partners = () => {
             setTickets(ticketsAll.data)
         }
         fetchTicketsData();
+        async function fetchCompaniesData() {
+            const response = await fetch(`${apiUrl}/api/companies`)
+            const companiesAll = await response.json();
+            setCompanies(companiesAll.data)
+        }
+        fetchCompaniesData();
         const getCookie = (name) => {
             const cookieName = name + "=";
             const decodedCookie = decodeURIComponent(document.cookie);
@@ -890,7 +904,7 @@ const Partners = () => {
                         <div className='partnersContainerIsLoggedIn__userName'>
                             <h2 className='partnersContainerIsLoggedIn__userName__prop'>- Bienvenido/a, {user.first_name} -</h2>  
                         </div>
-                        <h2 className='partnersContainerIsLoggedIn__phrase' style={{borderBottom:'0.3vh solid #04064e'}}>Aún no eres socio/a en Que Corte!</h2>
+                        <h2 className='partnersContainerIsLoggedIn__phrase' style={{borderBottom:'0.3vh solid #04064e'}}>Aún no eres socio/a en {company.name}!</h2>
                         <h2 className='partnersContainerIsLoggedIn__phrase'>Registrate aquí mismo</h2>
                         <div className='partnersContainerIsLoggedIn__credentials'>
                             <div className='partnersContainerIsLoggedIn__credentials__label-input'>
@@ -930,7 +944,7 @@ const Partners = () => {
                                     <h2 className='partnersContainerIsLoggedIn__credentials__label-input__label__prop'>Cuota:</h2>
                                 </div>
                                 <div className='partnersContainerIsLoggedIn__credentials__label-input__membershipFee'>
-                                    <div className='partnersContainerIsLoggedIn__credentials__label-input__membershipFee__prop'>$ {membershipFees.value}</div>
+                                    <div className='partnersContainerIsLoggedIn__credentials__label-input__membershipFee__prop'>$ {membershipFees?membershipFees.value:'-'}</div>
                                 </div>
                             </div>
                             <div className='partnersContainerIsLoggedIn__credentials__btn'>
@@ -950,7 +964,7 @@ const Partners = () => {
                         </div>
                             {
                                 !isMembershipFeeExpired?
-                                <h2 className='partnersContainerIsLoggedIn__phrase' style={{borderBottom:'0.3vh solid #04064e'}}>Ya eres socio/a en Que Corte</h2>
+                                <h2 className='partnersContainerIsLoggedIn__phrase' style={{borderBottom:'0.3vh solid #04064e'}}>Ya eres socio/a en {company.name}</h2>
                                 :
                                 <h2 className='partnersContainerIsLoggedIn__phrase' style={{borderBottom:'0.3vh solid #04064e'}}>Cuota de socio vencida!</h2>
                             }

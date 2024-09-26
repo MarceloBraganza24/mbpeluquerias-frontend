@@ -19,16 +19,10 @@ export const ParentPrComponent = ({children}) => {
     return text.split('').map(char => replacements[char] || char).join('');
   };
 
-  function cleanString(input) {
-      let trimmed = input.trim();
-      let cleaned = trimmed.replace(/\s+/g, ' ');
-      return cleaned;
-  }
-
   const handleInputBusinessNamePr = (e) => {
     const inputValue = e.target.value;
-    const textCleaned = cleanString(inputValue);
-    const textToSaved = cleanText(textCleaned);
+    //const textCleaned = cleanString(inputValue);
+    const textToSaved = cleanText(inputValue);
     setInputBusinessNamePr(textToSaved)
   };
 
@@ -48,8 +42,8 @@ export const ParentPrComponent = ({children}) => {
 
   const handleInputEmailPr = (e) => {
     const inputValue = e.target.value;
-    const textCleaned = cleanString(inputValue);
-    const textToSaved = cleanText(textCleaned);
+    //const textCleaned = cleanString(inputValue);
+    const textToSaved = cleanText(inputValue);
     setInputEmailPr(textToSaved)
   };
   

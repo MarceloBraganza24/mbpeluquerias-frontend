@@ -44,6 +44,8 @@ const ShiftsListModal = ({id,hairdresser,first_name,last_name,service,email,date
     }) 
 
     const workDaysByHairdresserWorkDayFiltered = workDays.filter(item => (item.hairdresser == selectOptionHairdresserISh && (item.work_day == (concatNewDateSchedule.getDay()==6&&'Sabado')))
+        || (item.hairdresser == selectOptionHairdresserISh && (item.work_day == (concatNewDateSchedule.getDay()==0&&'Domingo'))) 
+        || (item.hairdresser == selectOptionHairdresserISh && (item.work_day == (concatNewDateSchedule.getDay()==1&&'Lunes'))) 
         || (item.hairdresser == selectOptionHairdresserISh && (item.work_day == (concatNewDateSchedule.getDay()==2&&'Martes'))) 
         || (item.hairdresser == selectOptionHairdresserISh && (item.work_day == (concatNewDateSchedule.getDay()==3&&'Miercoles'))) 
         || (item.hairdresser == selectOptionHairdresserISh && (item.work_day == (concatNewDateSchedule.getDay()==4&&'Jueves'))) 
@@ -586,7 +588,7 @@ const ShiftsListModal = ({id,hairdresser,first_name,last_name,service,email,date
                             </select>
                         </div>
                         <div className='shiftModalContainer__itemShift__input'>
-                            <input className='shiftModalContainer__itemShift__input__prop' type='email' value={!inputEmailISh?(email?email:'-'):inputEmailISh}onChange={handleInputEmailISh}/>
+                            <input disabled className='shiftModalContainer__itemShift__input__prop' type='email' value={!inputEmailISh?(email?email:'-'):inputEmailISh}onChange={handleInputEmailISh}/>
                         </div>
                         <div className='shiftModalContainer__itemShift__btns'>
                             <button className='shiftModalContainer__itemShift__btns__btn' onClick={handleBtnDelShift}>Borrar</button>

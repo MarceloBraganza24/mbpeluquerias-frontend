@@ -46,6 +46,16 @@
                     font-size: 25px;
                 }
             }
+            &__labelNPartner {
+                width: 100%;
+                height: auto;
+                @include disFC();
+                color: #04064e;
+                &__prop {
+                    text-align: center;
+                    font-size: 30px;
+                }
+            }
         }
     }
     &__btn {
@@ -102,6 +112,16 @@
                     }
                 }
                 &__labelData {
+                    width: 100%;
+                    height: auto;
+                    @include disFC();
+                    color: #04064e;
+                    &__prop {
+                        text-align: center;
+                        font-size: 18px;
+                    }
+                }
+                &__labelNPartner {
                     width: 100%;
                     height: auto;
                     @include disFC();

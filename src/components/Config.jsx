@@ -17,11 +17,16 @@ const Config = () => {
   const [services, setServices] = useState([]);
   const [prices, setPrices] = useState([]);
   const [workDays, setWorkDays] = useState([]);
+
+  const [companies, setCompanies] = useState([]);
+
   const workDaysByHairdresserWorkDay = []
   const {menuOptionsModal,handleMenuOptionsModal} = useContext(OpenModalContext);
   const apiUrl = import.meta.env.VITE_API_URL;
   const selectPartnerNonPartner = ['No socio','Socio'];
   
+  const [inputSaveCompany, setInputSaveCompany] = useState('');
+
   const [inputAddHairdresser, setInputAddHairdresser] = useState('');
   const [inputTitleService, setInputTitleService] = useState('');
   const [inputValueService, setInputValueService] = useState('');
@@ -110,6 +115,12 @@ const Config = () => {
                 setWorkDays(workDaysAll.data)
             }
             fetchWorkDaysData();
+            async function fetchCompaniesData() {
+                const response = await fetch(`${apiUrl}/api/companies`)
+                const companiesAll = await response.json();
+                setCompanies(companiesAll.data)
+            }
+            fetchCompaniesData();
             const getCookie = (name) => {
             const cookieName = name + "=";
             const decodedCookie = decodeURIComponent(document.cookie);
@@ -181,6 +192,12 @@ const Config = () => {
             setWorkDays(workDaysAll.data)
         }
         fetchWorkDaysData();
+        async function fetchCompaniesData() {
+            const response = await fetch(`${apiUrl}/api/companies`)
+            const companiesAll = await response.json();
+            setCompanies(companiesAll.data)
+        }
+        fetchCompaniesData();
         const getCookie = (name) => {
         const cookieName = name + "=";
         const decodedCookie = decodeURIComponent(document.cookie);
@@ -226,7 +243,7 @@ const Config = () => {
     }, []);
 
     function regexOnlyLetters(str) {
-        const regex = /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s]*$/;
+        const regex = /^[a-zA-Z\s]*$/;
         return regex.test(str);
     }
 
@@ -246,6 +263,12 @@ const Config = () => {
         return cleaned;
     }
 
+    const handleInputSaveCompany = (e) => {
+        const texto = e.target.value;
+        const textToSaved = cleanText(texto);
+        setInputSaveCompany(textToSaved)
+    }
+
     const handleInputAddHairdresser = (e) => {
       const texto = e.target.value;
       if(regexOnlyLetters(texto)) {
@@ -263,9 +286,10 @@ const Config = () => {
     }
 
     const handleInputValueService = (e) => {
-      const texto = e.target.value;
-      const textToSaved = cleanText(texto);
-      setInputValueService(textToSaved)
+        const texto = e.target.value;
+        if (/^\d*$/.test(texto)) {
+            setInputValueService(texto);
+        }
     }
 
     const handleSelectCategoryService = (e) => {
@@ -279,12 +303,17 @@ const Config = () => {
 
     const handleInputAddTitleVariouPrice = (e) => {
       const texto = e.target.value;
-      setInputAddTitleVariouPrice(texto)
+      if(regexOnlyLetters(texto)) {
+        const textToSaved = cleanText(texto);
+        setInputAddTitleVariouPrice(textToSaved)
+      }
     }
 
     const handleInputAddValueVariouPrice = (e) => {
       const texto = e.target.value;
-      setInputAddValueVariouPrice(texto)
+      if (/^\d*$/.test(texto)) {
+        setInputAddValueVariouPrice(texto);
+    }
     }
 
     const handleSelectHairdressersWeekDays = (e) => {
@@ -391,9 +420,79 @@ const Config = () => {
       
     }  
 
+    const handleBtnSaveCompany = async() => {
+        const date = new Date();
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+        const currentDate = `${year}-${month}-${day} ${hours}:${minutes}`;
+        const company_datetime = currentDate;
+  
+        if(inputSaveCompany == '') {
+          toast('Debes ingresar el nombre de tu empresa!', {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
+        } else {
+          const response = await fetch(`${apiUrl}/api/companies/register`, {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json; charset=utf-8'
+              },
+              body: JSON.stringify({ name: cleanString(inputSaveCompany), company_datetime })
+          })
+          //const data = await response.json();
+          if (response.ok) {
+              toast('Has guardado el nombre de tu empresa', {
+                  position: "top-right",
+                  autoClose: 2000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "dark",
+              });
+              setTimeout(() => {
+                  setInputSaveCompany('');
+              }, 2500);
+          } 
+          /* if(data.error === 'There is already a company with that name') {
+              toast('Ya existe un peluquero con ese nombre!', {
+                  position: "top-right",
+                  autoClose: 1500,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "dark",
+              });
+          } */
+        }
+        
+      }  
+
     const [idHairdresser, setIdHairdresser] = useState('');
     const [nameHairdresser, setNameHairdresser] = useState('');
     const [deleteHairdresserModal, setDeleteHairdresserModal] = useState(false);
+    
+    const [idCompany, setIdCompany] = useState('');
+    const [nameCompany, setNameCompany] = useState('');
+    const [deleteCompanyModal, setDeleteCompanyModal] = useState(false);
+
+    const [idVariou, setIdVariou] = useState('');
+    const [titleVariou, setTitleVariou] = useState('');
+    const [deleteVariouModal, setDeleteVariouModal] = useState(false);
+
     const [deleteServiceModal, setDeleteServiceModal] = useState(false);
 
     const handleOpenModalBtnDeleteHairdresser = (id,hairdresser) => {
@@ -402,10 +501,22 @@ const Config = () => {
         setDeleteHairdresserModal(true)
     }
 
+    const handleOpenModalBtnDeleteCompany = (id,company) => {
+        setIdCompany(id)
+        setNameCompany(company)
+        setDeleteCompanyModal(true)
+    }
+
     const handleOpenModalBtnDeleteService = (id,service) => {
         setIdService(id)
         setTitleService(service)
         setDeleteServiceModal(true)
+    }
+
+    const handleOpenModalBtnDeleteVariou = (id,titleVariou) => {
+        setIdVariou(id)
+        setTitleVariou(titleVariou)
+        setDeleteVariouModal(true)
     }
 
     const hanldeBtnAddService = async() => {
@@ -458,6 +569,7 @@ const Config = () => {
             setTimeout(() => {
                 setInputTitleService('');
                 setInputValueService('');
+                setSelectCategoryService(selectPartnerNonPartner[0]);
             }, 2500);
         } else if(data.error === 'There is already a service with that title') {
             toast('Ya existe un servicio con ese nombre y categoría!', {
@@ -495,26 +607,6 @@ const Config = () => {
       setTitleService(title)
       setValueService(value)
       setUpdateServiceBtnIsOpen(true)
-    }
-
-    const handleBtnDeleteService = async(id) => {
-      
-      const response = await fetch(`${apiUrl}/api/services/${id}`, {
-          method: 'DELETE'
-      })
-      if (response.ok) {
-          toast('Has eliminado el servicio correctamente', {
-              position: "top-right",
-              autoClose: 2000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "dark",
-          });
-      } 
-
     }
 
     const handleBtnSaveMembershipFee = async() => {
@@ -581,24 +673,6 @@ const Config = () => {
       setTitleVariousPrice(title)
       setValueVariousPrice(value)
       setUpdateVariousPriceModal(true)
-    }
-
-    const handleBtnDeleteVariouPrice = async(id, title) => {
-      const response = await fetch(`${apiUrl}/api/prices/${id}`, {
-          method: 'DELETE'
-      })
-      if (response.ok) {
-          toast(`Has eliminado el precio de ${title} correctamente`, {
-              position: "top-right",
-              autoClose: 2000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "dark",
-          });
-      } 
     }
 
     const handleBtnAddVariouPrice = async() => {
@@ -829,6 +903,60 @@ const Config = () => {
     }
 
     
+    const DeleteCompanyModal = ({id,company,setDeleteCompanyModal}) => {
+
+        const handleBtnDeleteCompany = async() => {
+            setShowSpinner(true)
+            const response = await fetch(`${apiUrl}/api/companies/${id}`, {
+                method: 'DELETE'
+            })
+            if (response.ok) {
+                toast('Has eliminado el nombre de tu empresa correctamente', {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+                setTimeout(() => {
+                    setShowSpinner(false)
+                    setDeleteCompanyModal(false)
+                }, 2500);
+            } 
+        }
+
+        const handleBtnNonDeleteCompany = () => {
+            setDeleteCompanyModal(false)
+        }
+
+      return (
+        <>
+            <div className='confirmationDeleteBtnCompanyModalContainer'>
+                <div className='confirmationDeleteBtnCompanyModalContainer__ask'>¿Estás seguro que deseas borrar el nombre de tu empresa "{company}"?</div>
+                <div className='confirmationDeleteBtnCompanyModalContainer__askMobile'>
+                    <div className='confirmationDeleteBtnCompanyModalContainer__askMobile__ask'>¿Estás seguro que deseas borrar el nombre de tu empresa "{company}"?</div>
+                </div>
+                <div className='confirmationDeleteBtnCompanyModalContainer__btnsContainer'>
+                    <div className='confirmationDeleteBtnCompanyModalContainer__btnsContainer__btns'>
+                        {
+                            !showSpinner?                            
+                            <button onClick={handleBtnDeleteCompany} className='confirmationDeleteBtnCompanyModalContainer__btnsContainer__btns__prop'>Si</button>
+                            :
+                            <Spinner/>
+                        }
+                    </div>
+                    <div className='confirmationDeleteBtnCompanyModalContainer__btnsContainer__btns'>
+                        <button onClick={handleBtnNonDeleteCompany} className='confirmationDeleteBtnCompanyModalContainer__btnsContainer__btns__prop'>No</button>
+                    </div>
+                </div>
+            </div>
+        </>
+      )
+    }
+    
     const DeleteHairdresserModal = ({id,hairdresser,setDeleteHairdresserModal}) => {
 
         const handleBtnDeleteHairdresser = async() => {
@@ -936,68 +1064,127 @@ const Config = () => {
         </>
       )
     }
+
+    const DeleteVariouModal = ({id,variou,setDeleteVariouModal}) => {
+
+        const handleBtnDeleteVariou = async() => {
+            setShowSpinner(true)
+            const response = await fetch(`${apiUrl}/api/prices/${id}`, {
+                method: 'DELETE'
+            })
+            if (response.ok) {
+                toast('Has eliminado el item correctamente', {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+                setTimeout(() => {
+                    setShowSpinner(false)
+                    setDeleteVariouModal(false)
+                }, 2500);
+            } 
+        }
+
+        const handleBtnNonDeleteVariou = () => {
+            setDeleteVariouModal(false)
+        }
+
+      return (
+        <>
+            <div className='confirmationDeleteBtnVariouModalContainer'>
+                <div className='confirmationDeleteBtnVariouModalContainer__ask'>¿Estás seguro que deseas borrar el item "{variou}"?</div>
+                <div className='confirmationDeleteBtnVariouModalContainer__askMobile'>
+                    <div className='confirmationDeleteBtnVariouModalContainer__askMobile__ask'>¿Estás seguro que deseas borrar el item "{variou}"?</div>
+                </div>
+                <div className='confirmationDeleteBtnVariouModalContainer__btnsContainer'>
+                    <div className='confirmationDeleteBtnVariouModalContainer__btnsContainer__btns'>
+                        {
+                            !showSpinner?                            
+                            <button onClick={handleBtnDeleteVariou} className='confirmationDeleteBtnVariouModalContainer__btnsContainer__btns__prop'>Si</button>
+                            :
+                            <Spinner/>
+                        }
+                    </div>
+                    <div className='confirmationDeleteBtnVariouModalContainer__btnsContainer__btns'>
+                        <button onClick={handleBtnNonDeleteVariou} className='confirmationDeleteBtnVariouModalContainer__btnsContainer__btns__prop'>No</button>
+                    </div>
+                </div>
+            </div>
+        </>
+      )
+    }
     
 
     
     const UpdateServiceModal = ({setUpdateServiceBtnIsOpen,id,title,value}) => {
 
-      const [inputTitleUpdateService,setInputTitleUpdateService] = useState('')
-      const [inputValueUpdateService,setInputValueUpdateService] = useState('')
+        const [inputTitleUpdateService,setInputTitleUpdateService] = useState('')
+        const [inputValueUpdateService,setInputValueUpdateService] = useState('')
 
-      const handleBtnCloseModal = () => {
-        setUpdateServiceBtnIsOpen(false)
-      }
+        const handleBtnCloseModal = () => {
+            setUpdateServiceBtnIsOpen(false)
+        }
 
-      const handleBtnUpdateServiceValue = async() => {
-        if((inputTitleUpdateService == '' || inputTitleUpdateService == title) && (inputValueUpdateService == '' || inputValueUpdateService == value)) {
-          toast('No tienes cambios para actualizar!', {
-            position: "top-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
-        } else {
-          const obj = {
-            title: inputTitleUpdateService?inputTitleUpdateService:title,
-            value: inputValueUpdateService?inputValueUpdateService:value,
-          }
-          const response = await fetch(`${apiUrl}/api/services/${id}`, {
-              method: 'PUT',
-              headers: {
-                  'Content-Type': 'application/json; charset=utf-8'
-              },
-              body: JSON.stringify(obj)
-          })
-          if (response.ok) {
-              toast('Has actualizado el servicio correctamente', {
-                  position: "top-right",
-                  autoClose: 2000,
-                  hideProgressBar: false,
-                  closeOnClick: true,
-                  pauseOnHover: true,
-                  draggable: true,
-                  progress: undefined,
-                  theme: "dark",
-              });
-              setUpdateServiceBtnIsOpen(false)
-          } 
-          const data = await response.json();
-          if(data.error === 'There is already a service with that title') {
-              toast('Ya existe un servicio con ese nombre y categoría!', {
-                  position: "top-right",
-                  autoClose: 1500,
-                  hideProgressBar: false,
-                  closeOnClick: true,
-                  pauseOnHover: true,
-                  draggable: true,
-                  progress: undefined,
-                  theme: "dark",
-              });
-          }
+        useEffect(()=>{
+            setInputTitleUpdateService(`${title}`)
+            setInputValueUpdateService(`${value}`)
+        },[])
+
+        const handleBtnUpdateServiceValue = async() => {
+            if((inputTitleUpdateService == '' || inputTitleUpdateService == title) && (inputValueUpdateService == '' || inputValueUpdateService == value)) {
+            toast('No tienes cambios para actualizar!', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
+            } else {
+            const obj = {
+                title: inputTitleUpdateService?inputTitleUpdateService:title,
+                value: inputValueUpdateService?inputValueUpdateService:value,
+            }
+            const response = await fetch(`${apiUrl}/api/services/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json; charset=utf-8'
+                },
+                body: JSON.stringify(obj)
+            })
+            if (response.ok) {
+                toast('Has actualizado el servicio correctamente', {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+                setUpdateServiceBtnIsOpen(false)
+            } 
+            const data = await response.json();
+            if(data.error === 'There is already a service with that title') {
+                toast('Ya existe un servicio con ese nombre y categoría!', {
+                    position: "top-right",
+                    autoClose: 1500,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+            }
         }
       }
 
@@ -1020,10 +1207,10 @@ const Config = () => {
             <div className='updateServiceModal__data'>
                 <div className='updateServiceModal__data__label-input'>
                     <div className='updateServiceModal__data__label-input__input'>
-                        <input value={inputTitleUpdateService?inputTitleUpdateService:title} onChange={handleInputTitleUpdateService} className='updateServiceModal__data__label-input__input__prop' type="text" />
+                        <input value={inputTitleUpdateService} onChange={handleInputTitleUpdateService} className='updateServiceModal__data__label-input__input__prop' type="text" />
                     </div>
                     <div className='updateServiceModal__data__label-input__input'>
-                        <input value={inputValueUpdateService?inputValueUpdateService:value} onChange={handleInputValueUpdateService} className='updateServiceModal__data__label-input__input__prop' type="text" />
+                        <input value={inputValueUpdateService} onChange={handleInputValueUpdateService} className='updateServiceModal__data__label-input__input__prop' type="text" />
                     </div>
                 </div>
             </div>
@@ -1143,6 +1330,46 @@ const Config = () => {
 
                     <div className='configContainer__config__title'>Configuración</div>
 
+                    <div className='configContainer__config__company'>
+                        <div className='configContainer__config__company__prop'>Empresa:</div>
+                    </div>
+                    {
+                        companies.length == 0 &&
+                        <div className='configContainer__config__addCompany'>
+                            <div className='configContainer__config__addCompany__addCompanyContainer'>
+                                <div className='configContainer__config__addCompany__addCompanyContainer__input'>
+                                    <input value={inputSaveCompany} onChange={handleInputSaveCompany} placeholder='nombre empresa' type="text" className='configContainer__config__addCompany__addCompanyContainer__input__prop' />
+                                </div>
+                                <div className='configContainer__config__addCompany__addCompanyContainer__btn'>
+                                    <button onClick={handleBtnSaveCompany} className='configContainer__config__addCompany__addCompanyContainer__btn__prop'>Guardar</button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    
+                    <div className='configContainer__config__companiesList'>
+                        {
+                            companies.length == 0 ?
+                            <div style={{color:'#04064e'}}>Aún no has guardado ningún nombre</div>
+                            :
+
+                            companies.map((company) => {
+                            return(
+                                <>
+                                        <div className='configContainer__config__companiesList__item'>
+                                            <div className='configContainer__config__companiesList__item__label'>
+                                                <div className='configContainer__config__companiesList__item__label__prop'>{company.name}</div>
+                                            </div>
+                                            <div className='configContainer__config__companiesList__item__btn'>
+                                                <button onClick={()=>{handleOpenModalBtnDeleteCompany(company._id,company.name)}} className='configContainer__config__companiesList__item__btn__prop'>Borrar</button>
+                                            </div>
+                                        </div>
+                                    </>
+                                )
+                            })
+                        }
+                    </div>
+
                     <div className='configContainer__config__hairdresser'>
                         <div className='configContainer__config__hairdresser__prop'>Peluqueros:</div>
                     </div>
@@ -1164,7 +1391,7 @@ const Config = () => {
                         {
 
                           hairdressers.length == 0 ?
-                            <div>Aún no existen peluqueros</div>
+                            <div style={{color:'#04064e'}}>Aún no existen peluqueros</div>
                           :
                           
                           hairdressers.map((hairdresser) => {
@@ -1195,6 +1422,12 @@ const Config = () => {
                             <div className='configContainer__config__addService__addServiceContainer__input'>
                                 <input value={inputValueService} onChange={handleInputValueService} placeholder='ingrese valor' type="text" className='configContainer__config__addService__addServiceContainer__input__prop' />
                             </div>
+                            <div className='configContainer__config__addService__addServiceContainer__inputMobile'>
+                                <input value={inputTitleService} onChange={handleInputTitleService} placeholder='servicio' type="text" className='configContainer__config__addService__addServiceContainer__inputMobile__prop' />
+                            </div>
+                            <div className='configContainer__config__addService__addServiceContainer__inputMobile'>
+                                <input value={inputValueService} onChange={handleInputValueService} placeholder='valor' type="text" className='configContainer__config__addService__addServiceContainer__inputMobile__prop' />
+                            </div>
                             <div className='configContainer__config__addService__addServiceContainer__select'>
                                 <select className='configContainer__config__addService__addServiceContainer__select__prop'  value={selectCategoryService} onChange={(e) => {handleSelectCategoryService(e.target.value)}}>
                                     {selectPartnerNonPartner.map((option, index) => (
@@ -1214,7 +1447,7 @@ const Config = () => {
                         </div>
                         {
                             nonPartnersService.length == 0 ?
-                            <div>Aún no existen servicios</div>
+                            <div style={{color:'#04064e'}}>Aún no existen servicios</div>
                             :
                             nonPartnersService.map((service) => {
                                 return(
@@ -1240,7 +1473,7 @@ const Config = () => {
                         </div>
                         {
                           partnersService.length == 0 ?
-                            <div>Aún no existen servicios</div>
+                            <div style={{color:'#04064e'}}>Aún no existen servicios</div>
                           :
                             partnersService.map((service) => {
                                 return(
@@ -1278,7 +1511,10 @@ const Config = () => {
                           membershipFee&&!updateInputMembershipFeeIsOpen?
                           <div className='configContainer__config__membershipFeeList__item__label__prop'>$ {membershipFee?membershipFee.value:''}</div>
                           :
-                          <input className='configContainer__config__membershipFeeList__item__label__input' placeholder='ingrese valor cuota' value={inputMembershipFee} onChange={handleInputMembershipFee} type="text" />
+                          <>
+                            <input className='configContainer__config__membershipFeeList__item__label__input' placeholder='ingrese valor cuota' value={inputMembershipFee} onChange={handleInputMembershipFee} type="text" />
+                            <input className='configContainer__config__membershipFeeList__item__label__inputMobile' placeholder='valor cuota' value={inputMembershipFee} onChange={handleInputMembershipFee} type="text" />
+                          </>
                         }
                       </div>
 
@@ -1338,7 +1574,7 @@ const Config = () => {
                                         </div>
                                         <div className='configContainer__config__variousList__item__btn'>
                                             <button onClick={()=>{handleBtnOpenUpdateVariousPrice(item._id,item.title,item.value)}} className='configContainer__config__variousList__item__btn__prop'>Editar</button>
-                                            <button onClick={()=>{handleBtnDeleteVariouPrice(item._id,item.title)}} className='configContainer__config__variousList__item__btn__prop'>Borrar</button>
+                                            <button onClick={()=>{handleOpenModalBtnDeleteVariou(item._id,item.title)}} className='configContainer__config__variousList__item__btn__prop'>Borrar</button>
                                         </div>
                                     </div>
                                 </>
@@ -1349,11 +1585,6 @@ const Config = () => {
                     <div className='configContainer__config__weekDays'>
                         <div className='configContainer__config__weekDays__prop'>Días laborales:</div>
                     </div>
-
-
-
-
-
                     <div className='configContainer__config__createWeekDayMobile'>
 
                         <div className='configContainer__config__createWeekDayMobile__hairdresser'>
@@ -1383,14 +1614,13 @@ const Config = () => {
                         </div>
 
                     </div>
-
                     <div className='configContainer__config__createWeekDayMobile__inputsCreateWorkDayBtns'>
                             {
                                 inputCreateWeekDayOpen&&
                                 <div className='configContainer__config__createWeekDayMobile__inputsCreateWorkDayBtns__inputs'>
-                                    <input maxLength={2} value={inputCreateWeekDayH} onChange={handleInputCreateWeekDayH} onBlur={handleOnBlurInputCreateWeekDayH} className='configContainer__config__createWeekDayMobile__inputsCreateWorkDayBtns__inputs__prop' type="text" />
+                                    <input placeholder='HH' maxLength={2} value={inputCreateWeekDayH} onChange={handleInputCreateWeekDayH} onBlur={handleOnBlurInputCreateWeekDayH} className='configContainer__config__createWeekDayMobile__inputsCreateWorkDayBtns__inputs__prop' type="text" />
                                     <div>:</div>
-                                    <input maxLength={2} value={inputCreateWeekDayM} onChange={handleInputCreateWeekDayM} onBlur={handleOnBlurInputCreateWeekDayM} className='configContainer__config__createWeekDayMobile__inputsCreateWorkDayBtns__inputs__prop' type="text" />
+                                    <input placeholder='MM' maxLength={2} value={inputCreateWeekDayM} onChange={handleInputCreateWeekDayM} onBlur={handleOnBlurInputCreateWeekDayM} className='configContainer__config__createWeekDayMobile__inputsCreateWorkDayBtns__inputs__prop' type="text" />
                                 </div>
                             }
                         <div className='configContainer__config__createWeekDayMobile__inputsCreateWorkDayBtns__btns'>
@@ -1407,13 +1637,7 @@ const Config = () => {
 
                         </div>
                     </div>
-
-
-
-
-
                     <div className='configContainer__config__createWeekDay'>
-
                       <div className='configContainer__config__createWeekDay__hairdresser'>
                         <select className='configContainer__config__createWeekDay__hairdresser__select'  value={selectHairdressersWeekDays} onChange={(e) => {handleSelectHairdressersWeekDays(e.target.value)}}>
                             {hairdressersOptionsSelect.map((option, index) => (
@@ -1421,7 +1645,6 @@ const Config = () => {
                             ))}
                         </select>
                       </div>
-
                       <div className='configContainer__config__createWeekDay__day'>
                         <select className='configContainer__config__createWeekDay__day__select'  value={selectDaysWeekDays} onChange={(e) => {handleSelectDaysWeekDays(e.target.value)}}>
                             {weekDays.map((option, index) => (
@@ -1429,11 +1652,8 @@ const Config = () => {
                             ))}
                         </select>
                       </div>
-
                       <div className='configContainer__config__createWeekDay__scheduleBtn'>
-
                         <div className='configContainer__config__createWeekDay__scheduleBtn__schedule'>
-
                             {
                                 !inputCreateWeekDayOpen?
                                 <select className='configContainer__config__createWeekDay__scheduleBtn__schedule__select' value={selectScheduleWeekDays} onChange={(e) => {handleSelectScheduleWeekDays(e.target.value)}}>
@@ -1450,7 +1670,6 @@ const Config = () => {
                             }
 
                         </div>
-
                         <div className='configContainer__config__createWeekDay__scheduleBtn__btn'>
                             
                             {
@@ -1464,22 +1683,8 @@ const Config = () => {
                             }
 
                         </div>
-
                       </div>
-
                     </div>
-
-
-
-
-
-
-
-
-
-
-
-
                     <div className='configContainer__config__btnShowWorkDaysListContainer'>
                         {
                             !showWorkDaysList ?
@@ -1512,13 +1717,19 @@ const Config = () => {
                             </div>
                     }
                         {
-                          deleteHairdresserModal&&<DeleteHairdresserModal setDeleteHairdresserModal={setDeleteHairdresserModal} id={idHairdresser} hairdresser={nameHairdresser} />
+                          deleteCompanyModal&&<DeleteCompanyModal setDeleteCompanyModal={setDeleteCompanyModal} id={idCompany} company={nameCompany} />
                         }
                         {
-                          deleteServiceModal&&<DeleteServiceModal setDeleteServiceModal={setDeleteServiceModal} id={idService} service={titleService} />
+                            deleteHairdresserModal&&<DeleteHairdresserModal setDeleteHairdresserModal={setDeleteHairdresserModal} id={idHairdresser} hairdresser={nameHairdresser} />
                         }
                         {
-                          updateServiceBtnIsOpen&&<UpdateServiceModal setUpdateServiceBtnIsOpen={setUpdateServiceBtnIsOpen} id={idService} title={titleService} value={valueService} />
+                            deleteServiceModal&&<DeleteServiceModal setDeleteServiceModal={setDeleteServiceModal} id={idService} service={titleService} />
+                        }
+                        {
+                            deleteVariouModal&&<DeleteVariouModal setDeleteVariouModal={setDeleteVariouModal} id={idVariou} variou={titleVariou} />
+                        }
+                        {
+                            updateServiceBtnIsOpen&&<UpdateServiceModal setUpdateServiceBtnIsOpen={setUpdateServiceBtnIsOpen} id={idService} title={titleService} value={valueService} />
                         }
                         {
                           updateVariousPriceModal&&<UpdateVariousPriceModal setUpdateVariousPriceModal={setUpdateVariousPriceModal} id={idVariousPrice} title={titleVariousPrice} value={valueVariousPrice} />

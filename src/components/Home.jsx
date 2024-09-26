@@ -13,7 +13,7 @@ const Home = () => {
   const {menuOptionsModal,handleMenuOptionsModal} = useContext(OpenModalContext);
   const apiUrl = import.meta.env.VITE_API_URL;
   
-  /* useEffect(() => {
+  useEffect(() => {
     menuOptionsModal&&handleMenuOptionsModal(false);
     const getCookie = (name) => {
       const cookieName = name + "=";
@@ -57,7 +57,7 @@ const Home = () => {
     } else {
       logout()
     }
-  }, []); */
+  }, []);
 
   return (
 

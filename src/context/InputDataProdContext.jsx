@@ -20,23 +20,17 @@ export const ParentProdComponent = ({children}) => {
     return text.split('').map(char => replacements[char] || char).join('');
   };
 
-  function cleanString(input) {
-      let trimmed = input.trim();
-      let cleaned = trimmed.replace(/\s+/g, ' ');
-      return cleaned;
-  }
-
   const handleInputTitleProd = (e) => {
     const inputValue = e.target.value;
-    const textCleaned = cleanString(inputValue);
-    const textToSaved = cleanText(textCleaned);
+    //const textCleaned = cleanString(inputValue);
+    const textToSaved = cleanText(inputValue);
     setInputTitleProd(textToSaved)
   };
 
   const handleInputDescriptionProd = (e) => {
     const inputValue = e.target.value;
-    const textCleaned = cleanString(inputValue);
-    const textToSaved = cleanText(textCleaned);
+    //const textCleaned = cleanString(inputValue);
+    const textToSaved = cleanText(inputValue);
     setInputDescriptionProd(textToSaved)
   };
 
@@ -56,8 +50,8 @@ export const ParentProdComponent = ({children}) => {
 
   const handleInputCategoryProd = (e) => {
     const inputValue = e.target.value;
-    const textCleaned = cleanString(inputValue);
-    const textToSaved = cleanText(textCleaned);
+    //const textCleaned = cleanString(inputValue);
+    const textToSaved = cleanText(inputValue);
     setInputCategoryProd(textToSaved)
   };
 

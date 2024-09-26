@@ -18,9 +18,9 @@ export const ParentShLComponent = ({children}) => {
 
   //,handleOnBlurInputAddScheduleMShLM,handleOnBlurInputAddScheduleHShLM
   function regexOnlyLetters(str) {
-    const regex = /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s]*$/;
+    const regex = /^[a-zA-Z\s]*$/;
     return regex.test(str);
-  }
+}
 
   const cleanText = (text) => {
     const replacements = {
@@ -43,8 +43,8 @@ export const ParentShLComponent = ({children}) => {
   const handleInputFirstNameShL = (e) => {
     const texto = e.target.value;
     if(regexOnlyLetters(texto)) {
-      const textCleaned = cleanString(texto);
-      const textToSaved = cleanText(textCleaned);
+      //const textCleaned = cleanString(texto);
+      const textToSaved = cleanText(texto);
       setInputFirstNameShL(textToSaved)
     }
   };
@@ -72,8 +72,8 @@ export const ParentShLComponent = ({children}) => {
   const handleInputLastNameShL = (e) => {
     const texto = e.target.value;
     if(regexOnlyLetters(texto)) {
-      const textCleaned = cleanString(texto);
-      const textToSaved = cleanText(textCleaned);
+      //const textCleaned = cleanString(texto);
+      const textToSaved = cleanText(texto);
       setInputLastNameShL(textToSaved)
     }
   };

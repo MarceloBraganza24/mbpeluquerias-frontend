@@ -49,26 +49,20 @@ const Shifts = () => {
 
     const optionsService = ['Elija su servicio'];
 
-    
-    /* function capitalizeFirstLetter(str) {
-        if (str.length === 0) return str;
-        return str.charAt(0).toUpperCase() + str.slice(1);
-    } */
+    function cleanString(input) {
+        let trimmed = input.trim();
+        let cleaned = trimmed.replace(/\s+/g, ' ');
+        return cleaned;
+    }
     
     if(!user.isMembershipFeePaid) {
         const noPartnersServices = services.filter(service => service.category == 'No socio')
         noPartnersServices.forEach(res => {
-            /* let capitalizedString = capitalizeFirstLetter(res.title);
-            optionsService.push(capitalizedString) */
-
             optionsService.push(res.title)
         })
     } else {
         const partnersServices = services.filter(service => service.category == 'Socio')
         partnersServices.forEach(res => {
-            /* let capitalizedString = capitalizeFirstLetter(res.title);
-            optionsService.push(capitalizedString) */
-
             optionsService.push(res.title)
         })
     }
@@ -88,10 +82,12 @@ const Shifts = () => {
     const dayFormatedNewDate = formatedNewDate.day();
     
     const workDaysByHairdresserWorkDayFiltered = workDays.filter(item => (item.hairdresser == selectOptionHairdresserSh && (item.work_day == (dayFormatedNewDate==6&&'Sabado')))
+        || (item.hairdresser == selectOptionHairdresserSh && (item.work_day == (dayFormatedNewDate==1&&'Lunes'))) 
         || (item.hairdresser == selectOptionHairdresserSh && (item.work_day == (dayFormatedNewDate==2&&'Martes'))) 
         || (item.hairdresser == selectOptionHairdresserSh && (item.work_day == (dayFormatedNewDate==3&&'Miercoles'))) 
         || (item.hairdresser == selectOptionHairdresserSh && (item.work_day == (dayFormatedNewDate==4&&'Jueves'))) 
         || (item.hairdresser == selectOptionHairdresserSh && (item.work_day == (dayFormatedNewDate==5&&'Viernes'))) 
+        || (item.hairdresser == selectOptionHairdresserSh && (item.work_day == (dayFormatedNewDate==0&&'Domingo'))) 
     )
 
     const schedulesByHairdresserDate = workDaysByHairdresserWorkDayFiltered.map(item => item.schedule)
@@ -123,124 +119,6 @@ const Shifts = () => {
     hairdressers.forEach(res => {
         optionsHairdresser.push(res.name)
     })
-
-    /* function filtrarPorFecha(shiftsFiltered, fecha) {
-        return shiftsFiltered.filter(objeto => objeto.date == fecha);
-    } */
-    //const shiftsByDate = filtrarPorFecha(shifts, formatedDate);
-
-    //const shiftsByHairdresserDate = shiftsByDate.filter(shift => shift.hairdresser == selectOptionHairdresserSh);
-    //console.log(shiftsByDate)
-    /* const mirkoShifts = shiftsByDate.filter(shift => shift.hairdresser == 'Mirko');
-    const aleShifts = shiftsByDate.filter(shift => shift.hairdresser == 'Ale');
-
-    const ayrtonSchedules = ayrtonShifts.map(shift => shift.schedule)
-    const mirkoSchedules = mirkoShifts.map(shift => shift.schedule)
-    const aleSchedules = aleShifts.map(shift => shift.schedule) */
-
-    //let filteredSchedules = schedulesByHairdresserDate.filter(time => !ayrtonSchedules.includes(time));
-
-    /* if(dayFormatedNewDate == 6) {
-
-        if(selectOptionHairdresserSh=='Ayrton Fibiger'){
-            let filteredSatArray = originalOptionsAyrtonSaturdayScheduleISh.filter(time => !ayrtonSchedules.includes(time));
-            filteredSatArray.forEach(res => {
-                optionsScheduleSh.push(res)
-            })
-        } else if(selectOptionHairdresserSh=='Mirko Fibiger') {
-            let filteredSatArray = originalOptionsMirkoSaturdayScheduleISh.filter(time => !mirkoSchedules.includes(time));
-            filteredSatArray.forEach(res => {
-                optionsScheduleSh.push(res)
-            })
-        } else if(selectOptionHairdresserSh=='Alexis Lambretch') {
-            let filteredSatArray = originalOptionsAleSaturdayScheduleISh.filter(time => !aleSchedules.includes(time));
-            filteredSatArray.forEach(res => {
-                optionsScheduleSh.push(res)
-            })
-        }
-
-    } else if(dayFormatedNewDate == 2) {
-
-        if(selectOptionHairdresserSh=='Ayrton Fibiger'){
-            let filteredMorArray = originalOptionsAyrtonMorScheduleISh.filter(time => !ayrtonSchedules.includes(time));
-            let filteredAftArray = originalOptionsAyrtonAftScheduleISh.filter(time => !ayrtonSchedules.includes(time));
-            filteredMorArray.forEach(res => {
-                optionsScheduleSh.push(res)
-            })
-            filteredAftArray.forEach(res => {
-                optionsScheduleSh.push(res)
-            })
-        } else if(selectOptionHairdresserSh=='Mirko Fibiger') {
-            let filteredAftArray = originalOptionsMirkoAftScheduleISh.filter(time => !mirkoSchedules.includes(time));
-            filteredAftArray.forEach(res => {
-                optionsScheduleSh.push(res)
-            })
-        } else if(selectOptionHairdresserSh=='Alexis Lambretch') {
-            let filteredTuesdayArray = originalOptionsAleTuesdayScheduleISh.filter(time => !aleSchedules.includes(time));
-            filteredTuesdayArray.forEach(res => {
-                optionsScheduleSh.push(res)
-            })
-        }
-
-    } else if(dayFormatedNewDate == 3 || dayFormatedNewDate == 4) {
-
-        if(selectOptionHairdresserSh=='Ayrton Fibiger'){
-            let filteredAftArray = originalOptionsAyrtonAftScheduleISh.filter(time => !ayrtonSchedules.includes(time));
-            filteredAftArray.forEach(res => {
-                optionsScheduleSh.push(res)
-            })
-        } else if(selectOptionHairdresserSh=='Mirko Fibiger') {
-            let filteredMorArray = originalOptionsMirkoMorScheduleISh.filter(time => !mirkoSchedules.includes(time));
-            let filteredAftArray = originalOptionsMirkoAftScheduleISh.filter(time => !mirkoSchedules.includes(time));
-            filteredMorArray.forEach(res => {
-                optionsScheduleSh.push(res)
-            })
-            filteredAftArray.forEach(res => {
-            optionsScheduleSh.push(res)
-            })
-        } else if(selectOptionHairdresserSh=='Alexis Lambretch') {
-            let filteredMorArray = originalOptionsAleMorScheduleISh.filter(time => !aleSchedules.includes(time));
-            let filteredAftArray = originalOptionsAleAftScheduleISh.filter(time => !aleSchedules.includes(time));
-            filteredMorArray.forEach(res => {
-                optionsScheduleSh.push(res)
-            })
-            filteredAftArray.forEach(res => {
-            optionsScheduleSh.push(res)
-            })
-        }
-
-    } else {
-
-        if(selectOptionHairdresserSh=='Ayrton'){
-            let filteredMorArray = originalOptionsAyrtonMorScheduleISh.filter(time => !ayrtonSchedules.includes(time));
-            let filteredAftArray = originalOptionsAyrtonAftScheduleISh.filter(time => !ayrtonSchedules.includes(time));
-            filteredMorArray.forEach(res => {
-                optionsScheduleSh.push(res)
-            })
-            filteredAftArray.forEach(res => {
-            optionsScheduleSh.push(res)
-            })
-        } else if(selectOptionHairdresserSh=='Mirko') {
-            let filteredMorArray = originalOptionsMirkoMorScheduleISh.filter(time => !mirkoSchedules.includes(time));
-            let filteredAftArray = originalOptionsMirkoAftScheduleISh.filter(time => !mirkoSchedules.includes(time));
-            filteredMorArray.forEach(res => {
-                optionsScheduleSh.push(res)
-            })
-            filteredAftArray.forEach(res => {
-            optionsScheduleSh.push(res)
-            })
-        } else if(selectOptionHairdresserSh=='Ale') {
-            let filteredMorArray = originalOptionsAleMorScheduleISh.filter(time => !aleSchedules.includes(time));
-            let filteredAftArray = originalOptionsAleAftScheduleISh.filter(time => !aleSchedules.includes(time));
-            filteredMorArray.forEach(res => {
-                optionsScheduleSh.push(res)
-            })
-            filteredAftArray.forEach(res => {
-            optionsScheduleSh.push(res)
-            })
-        }
-
-    } */
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -341,18 +219,9 @@ const Shifts = () => {
         };
     }, [isMonted]);
     
-    //const shiftsMock = []
-        
     useEffect(() => {
         
         menuOptionsModal&&handleMenuOptionsModal(false);
-        /* async function fetchPricesData() {
-            const response = await fetch(`${apiUrl}/api/prices`)
-            const pricesAll = await response.json();
-            setPrices(pricesAll.data)
-        }
-        fetchPricesData(); */
-
         async function fetchShiftsData() {
             const response = await fetch(`${apiUrl}/api/shifts`)
             const shiftsAll = await response.json();
@@ -804,11 +673,11 @@ const Shifts = () => {
         const handleBtnSaveShift = async() => {
                 setShowSpinner(true);
                 const shiftToCreate = {
-                    first_name: inputFirstNameSh,
-                    last_name: inputLastNameSh,
+                    first_name: cleanString(inputFirstNameSh),
+                    last_name: cleanString(inputLastNameSh),
                     hairdresser: selectOptionHairdresserSh,
                     service: inputOptionServiceSh,
-                    email: inputEmailSh,
+                    email: cleanString(inputEmailSh),
                     date: formatedDate,
                     schedule: selectScheduleSh?selectScheduleSh:optionsScheduleSh[0],
                     price: inputPriceSh,

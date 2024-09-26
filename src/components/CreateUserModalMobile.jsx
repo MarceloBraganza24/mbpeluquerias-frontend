@@ -14,19 +14,12 @@ const CreateUserModalMobile = ({setIsOpenCreateUserModalLocalMobile}) => {
     const [inputEmailUL, setInputEmailUL] = useState('');
     const [inputPasswordUL, setInputPasswordUL] = useState('');
     const [showSpinner, setShowSpinner] = useState(false);
-    const date = new Date();
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    const hours = String(date.getHours()).padStart(2, '0');
-    const minutes = String(date.getMinutes()).padStart(2, '0');
-    const currentDate = `${year}-${month}-${day} ${hours}:${minutes}`;
     const optionsRoleIU = ["user","admin", "premium"];
 
     function regexOnlyLetters(str) {
-        const regex = /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s]*$/;
+        const regex = /^[a-zA-Z\s]*$/;
         return regex.test(str);
-    }
+      }
 
     const cleanText = (text) => {
         const replacements = {
@@ -47,8 +40,8 @@ const CreateUserModalMobile = ({setIsOpenCreateUserModalLocalMobile}) => {
     const handleInputFirstNameUL = (e) => {
         const texto = e.target.value;
         if(regexOnlyLetters(texto)) {
-            const textCleaned = cleanString(texto);
-            const textToSaved = cleanText(textCleaned);
+            //const textCleaned = cleanString(texto);
+            const textToSaved = cleanText(texto);
             setInputFirstNameUL(textToSaved)
         }
     };
@@ -56,8 +49,8 @@ const CreateUserModalMobile = ({setIsOpenCreateUserModalLocalMobile}) => {
     const handleInputLastNameUL = (e) => {
         const texto = e.target.value;
         if(regexOnlyLetters(texto)) {
-            const textCleaned = cleanString(texto);
-            const textToSaved = cleanText(textCleaned);
+            //const textCleaned = cleanString(texto);
+            const textToSaved = cleanText(texto);
             setInputLastNameUL(textToSaved)
         }
     };
@@ -69,8 +62,8 @@ const CreateUserModalMobile = ({setIsOpenCreateUserModalLocalMobile}) => {
 
     const handleInputEmailUL = (e) => {
         const texto = e.target.value;
-        const textCleaned = cleanString(texto);
-        const textToSaved = cleanText(textCleaned);
+        //const textCleaned = cleanString(texto);
+        const textToSaved = cleanText(texto);
         setInputEmailUL(textToSaved)
     };
 
@@ -170,15 +163,22 @@ const CreateUserModalMobile = ({setIsOpenCreateUserModalLocalMobile}) => {
                 theme: "dark",
             });
         } else {
+            const date = new Date();
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            const hours = String(date.getHours()).padStart(2, '0');
+            const minutes = String(date.getMinutes()).padStart(2, '0');
+            const user_datetime = `${year}-${month}-${day} ${hours}:${minutes}`;
             document.getElementById('btnCreateUser').style.display = 'none';
             setShowSpinner(true);
             const userToCreate = {
-                first_name: inputFirstNameUL,
-                last_name: inputLastNameUL,
-                email: inputEmailUL,
+                first_name: cleanString(inputFirstNameUL),
+                last_name: cleanString(inputLastNameUL),
+                email: cleanString(inputEmailUL),
                 role: selectRoleOptionUL?selectRoleOptionUL:optionsRoleIU[0],
                 password: inputPasswordUL,
-                user_datetime: currentDate
+                user_datetime: user_datetime
             }
             const response = await fetch(`${apiUrl}/api/sessions/singUp`, {
                 method: 'POST',         

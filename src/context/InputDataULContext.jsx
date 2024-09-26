@@ -19,22 +19,16 @@ export const ParentULComponent = ({children}) => {
     return text.split('').map(char => replacements[char] || char).join('');
   };
 
-  function cleanString(input) {
-      let trimmed = input.trim();
-      let cleaned = trimmed.replace(/\s+/g, ' ');
-      return cleaned;
-  }
-
   function regexOnlyLetters(str) {
-    const regex = /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s]*$/;
+    const regex = /^[a-zA-Z\s]*$/;
     return regex.test(str);
   }
 
     const handleInputFirstNameUL = (e) => {
         const texto = e.target.value;
         if(regexOnlyLetters(texto)) {
-          const textCleaned = cleanString(texto);
-          const textToSaved = cleanText(textCleaned);
+          //const textCleaned = cleanString(texto);
+          const textToSaved = cleanText(texto);
           setInputFirstNameUL(textToSaved)
         }   
     };
@@ -42,8 +36,8 @@ export const ParentULComponent = ({children}) => {
     const handleInputLastNameUL = (e) => {
         const texto = e.target.value;
         if(regexOnlyLetters(texto)) {
-          const textCleaned = cleanString(texto);
-          const textToSaved = cleanText(textCleaned);
+          //const textCleaned = cleanString(texto);
+          const textToSaved = cleanText(texto);
           setInputLastNameUL(textToSaved)
         }   
     };
@@ -55,8 +49,8 @@ export const ParentULComponent = ({children}) => {
 
     const handleInputEmailUL = (e) => {
         const inputValue = e.target.value;
-        const textCleaned = cleanString(inputValue);
-        const textToSaved = cleanText(textCleaned);
+        //const textCleaned = cleanString(inputValue);
+        const textToSaved = cleanText(inputValue);
         setInputEmailUL(textToSaved)
     };
 

@@ -42,6 +42,8 @@ const ShiftsListModalMobile = ({id,hairdresser,first_name,last_name,service,emai
     }) 
 
     const workDaysByHairdresserWorkDayFiltered = workDays.filter(item => (item.hairdresser == selectOptionHairdresserISh && (item.work_day == (concatNewDateSchedule.getDay()==6&&'Sabado')))
+        || (item.hairdresser == selectOptionHairdresserISh && (item.work_day == (concatNewDateSchedule.getDay()==0&&'Domingo'))) 
+        || (item.hairdresser == selectOptionHairdresserISh && (item.work_day == (concatNewDateSchedule.getDay()==1&&'Lunes'))) 
         || (item.hairdresser == selectOptionHairdresserISh && (item.work_day == (concatNewDateSchedule.getDay()==2&&'Martes'))) 
         || (item.hairdresser == selectOptionHairdresserISh && (item.work_day == (concatNewDateSchedule.getDay()==3&&'Miercoles'))) 
         || (item.hairdresser == selectOptionHairdresserISh && (item.work_day == (concatNewDateSchedule.getDay()==4&&'Jueves'))) 
@@ -592,7 +594,7 @@ const ShiftsListModalMobile = ({id,hairdresser,first_name,last_name,service,emai
                     <div style={{paddingTop:'2vh'}} className='updateShiftModalContainerMobile__labelInput'>
                         <div className='updateShiftModalContainerMobile__labelInput__label'>Email:</div>
                         <div className='updateShiftModalContainerMobile__labelInput__input'>
-                            <input className='updateShiftModalContainerMobile__labelInput__input__prop' type='email' value={!inputEmailISh?email:inputEmailISh}onChange={handleInputEmailISh}/>
+                            <input disabled style={{backgroundColor:'white',color:'black'}} className='updateShiftModalContainerMobile__labelInput__input__prop' type='email' value={!inputEmailISh?email:inputEmailISh}onChange={handleInputEmailISh}/>
                         </div>
                     </div>
                     <div style={{paddingTop:'2vh'}} className='updateShiftModalContainerMobile__btns'>

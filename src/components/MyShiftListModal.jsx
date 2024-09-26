@@ -55,6 +55,8 @@ const MyShiftListModal = ({id,hairdresser,first_name,last_name,service,email,dat
     }) 
 
     const workDaysByHairdresserWorkDayFiltered = workDays.filter(item => (item.hairdresser == selectHairdresserISh && (item.work_day == (dateMShLFormated.getDay()==6&&'Sabado')))
+        || (item.hairdresser == selectHairdresserISh && (item.work_day == (dateMShLFormated.getDay()==0&&'Domingo'))) 
+        || (item.hairdresser == selectHairdresserISh && (item.work_day == (dateMShLFormated.getDay()==1&&'Lunes'))) 
         || (item.hairdresser == selectHairdresserISh && (item.work_day == (dateMShLFormated.getDay()==2&&'Martes'))) 
         || (item.hairdresser == selectHairdresserISh && (item.work_day == (dateMShLFormated.getDay()==3&&'Miercoles'))) 
         || (item.hairdresser == selectHairdresserISh && (item.work_day == (dateMShLFormated.getDay()==4&&'Jueves'))) 

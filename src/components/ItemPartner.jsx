@@ -48,17 +48,12 @@ const ItemPartner = ({id,first_name,last_name,partner_number,email,resultComplet
             async function fetchPricesData() {
                 const response = await fetch(`${apiUrl}/api/prices`)
                 const pricesAll = await response.json();
-
-                //const partnersPrices = pricesAll.data.filter(price => price.category == 'Socios')
-                //const partnersMembershipFee = partnersPrices.find(price => price.price_of == 'cuota socio')
-
                 const palabrasABuscar = ["cuota", "socio"];
                 const membershipFees = pricesAll.data.find(objeto => 
                     palabrasABuscar.every(palabra => 
                     objeto.title.toLowerCase().includes(palabra.toLowerCase())
                     )
                 );
-
                 setMembershipFeePriceOf(membershipFees.title)
                 setMembershipFeeValuePriceOf(membershipFees.value)
             }
@@ -91,10 +86,14 @@ const ItemPartner = ({id,first_name,last_name,partner_number,email,resultComplet
         async function fetchPricesData() {
             const response = await fetch(`${apiUrl}/api/prices`)
             const pricesAll = await response.json();
-            const partnersPrices = pricesAll.data.filter(price => price.category == 'Socios')
-            const partnersMembershipFee = partnersPrices.find(price => price.price_of == 'cuota socio')
-            setMembershipFeePriceOf(partnersMembershipFee.price_of)
-            setMembershipFeeValuePriceOf(partnersMembershipFee.value_price_of)
+            const palabrasABuscar = ["cuota", "socio"];
+            const membershipFees = pricesAll.data.find(objeto => 
+                palabrasABuscar.every(palabra => 
+                objeto.title.toLowerCase().includes(palabra.toLowerCase())
+                )
+            );
+            setMembershipFeePriceOf(membershipFees.title)
+            setMembershipFeeValuePriceOf(membershipFees.value)
         }
         fetchPricesData();
         async function fetchTicketsData() {
@@ -194,6 +193,9 @@ const ItemPartner = ({id,first_name,last_name,partner_number,email,resultComplet
   return (
     <>
         <div className='itemPartnerMobile'>
+            <div className='itemPartnerMobile__input no-scroll'>
+                <div className='itemPartnerMobile__input__prop'>{partner_number}</div>
+            </div>
             <div className='itemPartnerMobile__input no-scroll'>
                 <div className='itemPartnerMobile__input__prop'>{first_name}</div>
             </div>

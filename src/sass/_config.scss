@@ -20,6 +20,91 @@
             color: #04064e;
             animation: fadeIn 2s ease-in;
         }
+        &__company {
+            width: 100%;
+            height: auto;
+            display: flex;
+            justify-content: start;
+            padding-left: 2vh;
+            border-top: 0.3vh solid #04064e;
+            &__prop {
+                font-size: 25px;
+                color: #04064e;
+            }
+        }
+        &__addCompany {
+            width: 100%;
+            height: auto;
+            @include disFC();
+            padding: 1vh 0vh;
+            &__addCompanyContainer {
+                width: 50%;
+                height: auto;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                padding: 1vh 0vh;
+                &__input {
+                    width: 100%;
+                    height: auto;
+                    @include disFC();
+                    &__prop {
+                        width: 80%;
+                        height: 35px;
+                        border-radius: 1vh;
+                        border: 0.3vh solid #04064e;
+                        color: #04064e;
+                        &::placeholder {
+                            text-align: center;
+                        }
+                    }
+                }
+                &__btn {
+                    width: 100%;
+                    height: auto;
+                    @include disFC();
+                    &__prop {
+                        width: 90%;
+                        height: 35px;
+                        @include btns;
+                    }
+                }
+            }
+        }
+        &__companiesList {
+            width: 100%;
+            height: auto;
+            @include disFC();
+            flex-direction: column;
+            gap: 2vh;
+            padding-bottom: 2vh;
+            &__titleList {
+                font-size: 25px;
+                color: #04064e;
+            }
+            &__item {
+                width: 40%;
+                height: auto;
+                @include disFC();
+                &__label {
+                    width: 100%;
+                    height: auto;
+                    @include disFC();
+                    &__prop {
+                        font-size: 22px;
+                        color: #04064e;
+                    }
+                }
+                &__btn {
+                    width: 100%;
+                    height: auto;
+                    @include disFC();
+                    &__prop {
+                        width: 50%;
+                        @include btns;
+                    }
+                }
+            }
+        }
         &__hairdresser {
             width: 100%;
             height: auto;
@@ -54,7 +139,7 @@
                         border: 0.3vh solid #04064e;
                         color: #04064e;
                         &::placeholder {
-                            padding-left: 0.5vh;
+                            text-align: center;
                         }
                     }
                 }
@@ -82,7 +167,7 @@
                 color: #04064e;
             }
             &__item {
-                width: 40%;
+                width: 80%;
                 height: auto;
                 @include disFC();
                 &__label {
@@ -128,6 +213,9 @@
                 display: grid;
                 grid-template-columns: 1fr 1fr 1fr 1fr;
                 padding: 1vh 0vh;
+                &__inputMobile {
+                    display: none;
+                }
                 &__input {
                     width: 100%;
                     height: auto;
@@ -139,7 +227,7 @@
                         border: 0.3vh solid #04064e;
                         color: #04064e;
                         &::placeholder {
-                            padding-left: 0.5vh;
+                            text-align: center;
                         }
                     }
                 }
@@ -252,15 +340,15 @@
                         font-size: 22px;
                         color: #04064e;
                     }
+                    &__inputMobile {
+                        display: none;
+                    }
                     &__input {
-                        width: 40%;
+                        width: 70%;
                         height: 35px;
                         border-radius: 1vh;
                         border: 0.3vh solid #04064e;
                         text-align: center;
-                        &::placeholder {
-                            padding-left: 1vh;
-                        }
                     }
                 }
                 &__btn {
@@ -309,7 +397,7 @@
                         border: 0.3vh solid #04064e;
                         color: #04064e;
                         &::placeholder {
-                            padding-left: 0.5vh;
+                            text-align: center;
                         }
                     }
                 }
@@ -523,7 +611,7 @@
         height: auto;
         @include disFC();
         flex-direction: column;
-        padding: 15vh 0vh;
+        padding: 15vh 0vh 3vh 0vh;
         &__config {
             background-color: steelblue;
             width: 90%;
@@ -538,6 +626,92 @@
                 font-size: 35px;
                 color: #04064e;
                 animation: fadeIn 2s ease-in;
+            }
+            &__company {
+                width: 100%;
+                height: auto;
+                display: flex;
+                justify-content: start;
+                padding-left: 2vh;
+                border-top: 0.3vh solid #04064e;
+                &__prop {
+                    font-size: 25px;
+                    color: #04064e;
+                }
+            }
+            &__addCompany {
+                width: 100%;
+                height: auto;
+                @include disFC();
+                padding: 1vh 0vh;
+                &__addCompanyContainer {
+                    width: 90%;
+                    height: auto;
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    padding: 1vh 0vh;
+                    &__input {
+                        width: 100%;
+                        height: auto;
+                        @include disFC();
+                        &__prop {
+                            width: 100%;
+                            height: 35px;
+                            border-radius: 1vh;
+                            border: 0.3vh solid #04064e;
+                            color: #04064e;
+                            &::placeholder {
+                                font-size: 14px;
+                                text-align: center;
+                            }
+                        }
+                    }
+                    &__btn {
+                        width: 100%;
+                        height: auto;
+                        @include disFC();
+                        &__prop {
+                            width: 60%;
+                            height: 35px;
+                            @include btns;
+                        }
+                    }
+                }
+            }
+            &__companiesList {
+                width: 100%;
+                height: auto;
+                @include disFC();
+                flex-direction: column;
+                gap: 2vh;
+                padding-bottom: 2vh;
+                &__titleList {
+                    font-size: 25px;
+                    color: #04064e;
+                }
+                &__item {
+                    width: 100%;
+                    height: auto;
+                    @include disFC();
+                    &__label {
+                        width: 100%;
+                        height: auto;
+                        @include disFC();
+                        &__prop {
+                            font-size: 18px;
+                            color: #04064e;
+                        }
+                    }
+                    &__btn {
+                        width: 100%;
+                        height: auto;
+                        @include disFC();
+                        &__prop {
+                            width: 50%;
+                            @include btns;
+                        }
+                    }
+                }
             }
             &__hairdresser {
                 width: 100%;
@@ -557,7 +731,7 @@
                 @include disFC();
                 padding: 1vh 0vh;
                 &__addHairdresserContainer {
-                    width: 95%;
+                    width: 90%;
                     height: auto;
                     display: grid;
                     grid-template-columns: 1fr 1fr;
@@ -573,7 +747,8 @@
                             border: 0.3vh solid #04064e;
                             color: #04064e;
                             &::placeholder {
-                                padding-left: 0.5vh;
+                                font-size: 14px;
+                                text-align: center;
                             }
                         }
                     }
@@ -582,7 +757,7 @@
                         height: auto;
                         @include disFC();
                         &__prop {
-                            width: 80%;
+                            width: 60%;
                             height: 30px;
                             @include btns;
                         }
@@ -646,9 +821,12 @@
                     height: auto;
                     display: grid;
                     grid-template-columns: 1fr 1fr 1fr 1fr;
-                    padding: 1vh 0vh;
+                    padding: 1vh 1vh;
                     gap: 0.5vh;
                     &__input {
+                        display: none;
+                    }
+                    &__inputMobile {
                         width: 100%;
                         height: auto;
                         @include disFC();
@@ -659,8 +837,7 @@
                             border: 0.3vh solid #04064e;
                             color: #04064e;
                             &::placeholder {
-                                padding-left: 0.5vh;
-                                font-size: 15px;
+                                font-size: 14px;
                                 text-align: center;
                             }
                         }
@@ -672,7 +849,7 @@
                         &__prop {
                             width: 100%;
                             height: 35px;
-                            font-size: 15px;
+                            font-size: 12px;
                             @include selects;
                             text-align: center;
                         }
@@ -682,7 +859,7 @@
                         height: auto;
                         @include disFC();
                         &__prop {
-                            width: 80%;
+                            width: 90%;
                             height: 30px;
                             font-size: 15px;
                             @include btns;
@@ -723,7 +900,7 @@
                         height: auto;
                         @include disFC();
                         &__prop {
-                            font-size: 12px;
+                            font-size: 10px;
                             color: #04064e;
                         }
                     }
@@ -765,7 +942,7 @@
                     color: #04064e;
                 }
                 &__item {
-                    width: 80%;
+                    width: 95%;
                     height: auto;
                     @include disFC();
                     padding-bottom: 1vh;
@@ -780,13 +957,18 @@
                             color: #04064e;
                         }
                         &__input {
+                            display: none;
+                        }
+                        &__inputMobile {
                             width: 100%;
                             height: 35px;
+                            display: block;
                             border-radius: 1vh;
                             border: 0.3vh solid #04064e;
                             text-align: center;
                             &::placeholder {
-                                padding-left: 1vh;
+                                font-size: 14px;
+                                text-align: center;
                             }
                         }
                     }
@@ -796,9 +978,9 @@
                         @include disFC();
                         gap: 1vh;
                         &__prop {
-                            width: 80%;
+                            width: 90%;
                             @include btns;
-                            font-size: 12px;
+                            font-size: 15px;
                             padding: 0.5vh 1vh;
                         }
                     }
@@ -839,7 +1021,8 @@
                             border: 0.3vh solid #04064e;
                             color: #04064e;
                             &::placeholder {
-                                padding-left: 0.5vh;
+                                font-size: 12px;
+                                text-align: center;
                             }
                         }
                     }
@@ -859,7 +1042,7 @@
                         height: auto;
                         @include disFC();
                         &__prop {
-                            width: 80%;
+                            width: 90%;
                             height: 30px;
                             @include btns;
                         }
@@ -886,7 +1069,7 @@
                         height: auto;
                         @include disFC();
                         &__prop {
-                            font-size: 10px;
+                            font-size: 15px;
                             color: #04064e;
                         }
                     }
@@ -921,13 +1104,13 @@
                 height: auto;
                 display: grid;
                 grid-template-columns: 1fr 1fr 1fr;
-                padding-top: 1vh;
+                padding-top: 2vh;
                 &__hairdresser {
                     width: 100%;
                     height: auto;
                     @include disFC();
                     &__select {
-                        width: 80%;
+                        width: 90%;
                         height: 30px;
                         @include selects;
                         font-size: 12px;
@@ -938,7 +1121,7 @@
                     height: auto;
                     @include disFC();
                     &__select {
-                        width: 80%;
+                        width: 90%;
                         height: 30px;
                         @include selects;
                         font-size: 12px;
@@ -949,7 +1132,7 @@
                     height: auto;
                     @include disFC();
                     &__select {
-                        width: 80%;
+                        width: 90%;
                         height: 30px;
                         @include selects;
                         font-size: 12px;
@@ -994,7 +1177,7 @@
                     width: 95%;
                     height: auto;
                     @include disFC();
-                    padding-top: 1vh;
+                    padding-top: 2vh;
                     &__inputs {
                         width: 100%;
                         height: auto;

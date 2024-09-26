@@ -25,20 +25,18 @@ const UsersList = () => {
     const [isMonted, setIsMonted] = useState(false);
     const apiUrl = import.meta.env.VITE_API_URL;
     const [isOpenCreateUserModalLocalMobile, setIsOpenCreateUserModalLocalMobile] = useState(false);
-    const date = new Date();
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    const hours = String(date.getHours()).padStart(2, '0');
-    const minutes = String(date.getMinutes()).padStart(2, '0');
-    const currentDate = `${year}-${month}-${day} ${hours}:${minutes}`;
-    const user_datetime = currentDate;
 
     const handleInputFilteredUsers = (e) => {
         const texto = e.target.value;
         setInputFilteredUsers(texto)
     }
     
+    function cleanString(input) {
+        let trimmed = input.trim();
+        let cleaned = trimmed.replace(/\s+/g, ' ');
+        return cleaned;
+    }
+
     useEffect(() => {
 
         const interval = setInterval(() => {
@@ -267,12 +265,19 @@ const UsersList = () => {
                 theme: "dark",
             });
         } else {
+            const date = new Date();
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            const hours = String(date.getHours()).padStart(2, '0');
+            const minutes = String(date.getMinutes()).padStart(2, '0');
+            const user_datetime = `${year}-${month}-${day} ${hours}:${minutes}`;
             document.getElementById('btnCreateUser').style.display = 'none';
             setShowSpinner(true);
             const userToCreate = {
-                first_name: inputFirstNameUL,
-                last_name: inputLastNameUL,
-                email: inputEmailUL,
+                first_name: cleanString(inputFirstNameUL),
+                last_name: cleanString(inputLastNameUL),
+                email: cleanString(inputEmailUL),
                 role: inputRoleUL?inputRoleUL:optionsRoleUL[0],
                 password: inputPasswordUL,
                 user_datetime: user_datetime

@@ -46,6 +46,8 @@ const CreateShiftModalMobile = ({setIsOpenCreateShiftModalLocalMobile}) => {
     })
 
     const workDaysByHairdresserWorkDayFiltered = workDays.filter(item => (item.hairdresser == selectOptionHairdresserShL && (item.work_day == (dayFormatedNewDate==6&&'Sabado')))
+        || (item.hairdresser == selectOptionHairdresserShL && (item.work_day == (dayFormatedNewDate==0&&'Domingo'))) 
+        || (item.hairdresser == selectOptionHairdresserShL && (item.work_day == (dayFormatedNewDate==1&&'Lunes'))) 
         || (item.hairdresser == selectOptionHairdresserShL && (item.work_day == (dayFormatedNewDate==2&&'Martes'))) 
         || (item.hairdresser == selectOptionHairdresserShL && (item.work_day == (dayFormatedNewDate==3&&'Miercoles'))) 
         || (item.hairdresser == selectOptionHairdresserShL && (item.work_day == (dayFormatedNewDate==4&&'Jueves'))) 
@@ -246,7 +248,7 @@ const CreateShiftModalMobile = ({setIsOpenCreateShiftModalLocalMobile}) => {
     };
 
     function regexOnlyLetters(str) {
-        const regex = /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s]*$/;
+        const regex = /^[a-zA-Z\s]*$/;
         return regex.test(str);
     }
 
@@ -269,8 +271,8 @@ const CreateShiftModalMobile = ({setIsOpenCreateShiftModalLocalMobile}) => {
     const handleInputFirstNameShL = (e) => {
         const texto = e.target.value;
         if(regexOnlyLetters(texto)) {
-            const textCleaned = cleanString(texto);
-            const textToSaved = cleanText(textCleaned);
+            //const textCleaned = cleanString(texto);
+            const textToSaved = cleanText(texto);
             setInputFirstNameShL(textToSaved)
         }
     };
@@ -278,8 +280,8 @@ const CreateShiftModalMobile = ({setIsOpenCreateShiftModalLocalMobile}) => {
     const handleInputLastNameShL = (e) => {
         const texto = e.target.value;
         if(regexOnlyLetters(texto)) {
-            const textCleaned = cleanString(texto);
-            const textToSaved = cleanText(textCleaned);
+            //const textCleaned = cleanString(texto);
+            const textToSaved = cleanText(texto);
             setInputLastNameShL(textToSaved)
         }
     };
@@ -476,17 +478,24 @@ const CreateShiftModalMobile = ({setIsOpenCreateShiftModalLocalMobile}) => {
                 theme: "dark",
             });
         } else {
+            const date = new Date();
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            const hours = String(date.getHours()).padStart(2, '0');
+            const minutes = String(date.getMinutes()).padStart(2, '0');
+            const shift_datetime = `${year}-${month}-${day} ${hours}:${minutes}`;
             document.getElementById('btnCreateShift').style.display = 'none';
             setShowSpinner(true);
             const shiftToCreate = {
                 hairdresser: selectOptionHairdresserShL,
-                first_name: inputFirstNameShL,
-                last_name: inputLastNameShL,
+                first_name: cleanString(inputFirstNameShL),
+                last_name: cleanString(inputLastNameShL),
                 service: inputOptionServiceShL=='Servicio'?'-':inputOptionServiceShL,
                 email: inputEmailShL,
                 date: formattedDate,
                 schedule: !isAddSchedule?(selectScheduleOptionShL?selectScheduleOptionShL:optionsScheduleSh[0]):concatAddSchedules,
-                shift_datetime: fechaActual,
+                shift_datetime: shift_datetime,
             }
             const response = await fetch(`${apiUrl}/api/shifts/register`, {
                 method: 'POST',         

@@ -24,6 +24,12 @@ const ProvidersList = () => {
     const [isMonted, setIsMonted] = useState(false);
     const [isOpenCreateProviderModalLocalMobile, setIsOpenCreateProviderModalLocalMobile] = useState(false);
 
+    function cleanString(input) {
+        let trimmed = input.trim();
+        let cleaned = trimmed.replace(/\s+/g, ' ');
+        return cleaned;
+    }
+
     useEffect(() => {
         const interval = setInterval(() => {
             menuOptionsModal&&handleMenuOptionsModal(false);
@@ -221,13 +227,21 @@ const ProvidersList = () => {
                 theme: "dark",
             });
         } else {
+            const date = new Date();
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            const hours = String(date.getHours()).padStart(2, '0');
+            const minutes = String(date.getMinutes()).padStart(2, '0');
+            const provider_datetime = `${year}-${month}-${day} ${hours}:${minutes}`;
             document.getElementById('btnCreateProvider').style.display = 'none';
             setShowSpinner(true);
             const providerToCreate = {
-                business_name: inputBusinessNamePr,
+                business_name: cleanString(inputBusinessNamePr),
                 cuit_cuil: inputCuitCuilPr,
                 phone: inputPhonePr,
-                email: inputEmailPr
+                email: cleanString(inputEmailPr),
+                provider_datetime: provider_datetime,
             }
             const response = await fetch(`${apiUrl}/api/providers/register`, {
                 method: 'POST',         
